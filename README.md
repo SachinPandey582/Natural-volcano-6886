@@ -6,18 +6,18 @@
 ## 🤝 **_Collaborators_**
 
 
-# 🧔🏻 **Vivek Goswami** `IA Manager`
+# 🧔🏻 **Venugopal Burli** `IA Manager`
 
-- Github:(https://github.com/vivekgoswami934)
-- Linkedin:(https://www.linkedin.com/in/vivek-goswami-680a91203/)
+- Github:()
+- Linkedin:()
 
 
 
 # 🧔🏻 **Sachin Pandey** `Team Lead`
 
-- Github:(https://github.com/amansingh456)
-- Linkedin:(https://www.linkedin.com/in/aman690/)
-- Email: (amansinghrajawat690@gmail.com)
+- Github:()
+- Linkedin:()
+- Email: ()
 
 # 🧑🏻 **Aman Singh Rajawat**
 
@@ -25,14 +25,20 @@
 - Linkedin:(https://www.linkedin.com/in/aman690/)
 - Email: (amansinghrajawat690@gmail.com)
 
-# 👱🏻‍♂️ **Ravichandra Koli**
+# 👱🏻‍♂️ **Rohit Kumar Malav**
 
 - Github:()
 - Linkedin:()
 - Email: ()
 
-# 🧑🏻‍🦰 **Lipan Padhan**
+# 🧑🏻‍🦰 **Hanumat Sharan**
 
-- Github:(https://github.com/lipan1437)
-- Linkedin:(https://www.linkedin.com/in/lipan-padhan-a0bb381a5/)
-- Email: (lipanpadhan1432@gmail.com)
+- Github:()
+- Linkedin:()
+- Email: ()
+
+# 🧑🏻‍🦰 **Dikshant Nagpal**
+
+- Github:()
+- Linkedin:()
+- Email: ()
