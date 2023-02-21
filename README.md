@@ -13,13 +13,13 @@
 
 
 
-# 🧔🏻 **Sachin Pandey** `Team Lead`
+# 🧑🏻‍🦰 **Sachin Pandey** `Team Lead`
 
 - Github:()
 - Linkedin:()
 - Email: ()
 
-# 🧑🏻 **Aman Singh Rajawat**
+# 🧔🏻 **Aman Singh Rajawat**
 
 - Github:(https://github.com/amansingh456)
 - Linkedin:(https://www.linkedin.com/in/aman690/)
