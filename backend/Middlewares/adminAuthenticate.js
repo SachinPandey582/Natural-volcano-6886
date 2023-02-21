@@ -1,10 +1,9 @@
 const adminAuthenticate=(req,res,next)=>{
     const {role}=req.query
-    if(role=="admin"){
-        console.log(role)
+    if(role=="admin"&&pass==8765){
     next()
     }else{
-        res.send("role Not found")
+        res.send({msg:"You are Not Admin"})
     }
 }
 
