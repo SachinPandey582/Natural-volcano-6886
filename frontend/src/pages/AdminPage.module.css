@@ -1,0 +1,39 @@
+h1{
+    color: red;
+}
+.container{
+border: 1px solid ;
+}
+
+.logo{
+    position: absolute;
+width: 256px;
+height: 83px;
+left: 0px;
+/* top: 8.19px; */
+
+background: linear-gradient(180deg, rgba(233, 31, 31, 0.2) 0%, rgba(227, 30, 30, 0.194792) 0.01%, rgba(34, 207, 176, 0.2) 75.9%);
+background-blend-mode: darken;
+/* transform: rotate(-1.83deg); */
+}
+.spritsvilla{
+    position: absolute;
+width: 237px;
+height: 33px;
+left: 0px;
+top: 20px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 32px;
+line-height: 39px;
+text-align: center;
+
+background: linear-gradient(92.61deg, #B2BA5A 40.35%, #D82424 103.24%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+text-fill-color: transparent;
+
+}
