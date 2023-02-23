@@ -1,7 +1,7 @@
 .mainContainer{
     border: 2px solid;
     display: grid;
-    grid-template-columns: 15% 80%;
+    grid-template-columns: 15% 85%;
 }
 .firstContainer{
     border-radius: 20px;
@@ -9,7 +9,7 @@
 }
 
 .secondContainer{
-    /* border: 2px solid blue; */
+    
 }
 .logoofmypage >img{
     width: 100%;
@@ -29,6 +29,8 @@
     margin-left: auto;
     margin-right: auto;
     width: 50%;
+    border-radius: 50%;
+    margin-top: 20%;
 }
 .Nameofperson{
     display: block;
@@ -64,6 +66,7 @@
     width: fit-content;
     padding: 10%;
     font-size: 100%;
+    font-weight: bolder;
 }
 .Sidebarsecondsection >div{
     margin-left : auto;
@@ -71,6 +74,7 @@
     width: fit-content;
     padding: 10%;
     font-size: 100%;
+    font-weight: bolder;
 }
 .Sidebarsecondsection{
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
