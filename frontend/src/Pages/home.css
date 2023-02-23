@@ -9,13 +9,14 @@
 
 
 .div_2{
-  
-    height: 70px;
+  display: flex;
+    height: 40px;
   }
 
   .div_2>h1{
    font-size: 22px;
    font-weight: lighter;
+   margin-top:-1px
    }
 
   .div_3{
@@ -24,7 +25,7 @@
     display: grid;
     grid-template-columns: repeat(5,1fr);
     grid-template-rows: repeat(1,150px);
-    row-gap: 10px;
+    /* row-gap: 10px; */
   }
 
 
@@ -35,7 +36,7 @@
   .div_4{
    
     height: 350px;
-    margin-top: 10px;
+    margin-top: -10px;
   }
   .div_4>img{
     width: 100%;
@@ -45,13 +46,14 @@
   .div_5{
     background-color: black;
     height: 150px;
+    margin-top: 25px;
   }
   .div_5_1{
     display: flex;
     justify-content: space-around;
     width: 9%;
     margin: auto;
-    padding-top: 10px;
+    padding-top: 30px;
   }
  
   .div_5_1>span{
@@ -80,7 +82,7 @@
   .div_5_2{
     display: flex;
     justify-content: space-around;
-    margin-top: 20px;
+    margin-top: 30px;
   }
 
   .div_5_2>div>div>p{
@@ -107,5 +109,22 @@
     color: white;
     border: 1px solid white;
   }
+
+  .hr1 {width: 40%;
+  border-top: 1px solid rgb(210, 196, 196);
+  border-bottom: none;
+   border-left: none;
+   border-right: none;
+   margin-top: 15px;
+  }
+  .hr2{
+    width: 40%;
+    border-top: 1px solid rgb(210, 196, 196);
+    border-bottom: none;
+     border-left: none;
+     border-right: none;
+     margin-top: 15px;
+  }
+
   
   
