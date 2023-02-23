@@ -1,9 +1,16 @@
 import React from 'react'
-
-const Routes = () => {
+import { Route, Routes } from 'react-router-dom'
+import AdminPage from '../pages/AdminPage'
+import AdminLandingPage from '../pages/Check'
+const AllRoutes = () => {
   return (
-    <div>Routes</div>
+    <div>
+      <Routes >
+<Route path='/' element={<AdminLandingPage/>}></Route>
+<Route path='/admin' element={<AdminPage/>}></Route>
+      </Routes>
+    </div>
   )
 }
 
-export default Routes
+export default AllRoutes

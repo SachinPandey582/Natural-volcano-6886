@@ -1,12 +1,13 @@
+import AllRoutes from './AllRoutes/Routes';
+
 import './App.css';
-import AdminPage from './pages/AdminPage';
-import Check from './pages/Check';
+
 
 function App() {
   return (
     <div >
-    <AdminPage/>
-    {/* <Check/> */}
+   
+    <AllRoutes/>
     </div>
   );
 }
