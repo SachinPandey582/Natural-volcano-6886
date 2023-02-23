@@ -2,6 +2,7 @@ import { Box, Button, IconButton, Image, Input, Menu, MenuButton, MenuItem, Menu
 import React, { useEffect, useReducer, useState } from 'react'
 import Logo from "../../../assets/SpritsVilla.png"
 import locationFn from '../../../location/location';
+
 import { MdLocationOn } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
@@ -13,6 +14,8 @@ import { GiSelfLove } from "react-icons/gi";
 import { TbSearch } from "react-icons/tb";
 import "./Navbar.css"
 
+import axios from "axios"
+const jswt = require("jsonwebtoken")
 
 
 
@@ -60,10 +63,32 @@ const Navbar = () => {
   }
 
 
-  const handleRegister = () =>{
+  const handleRegister = (e) =>{
+    e.preventDefault()
     dispatch({type:"RESET"})
-    console.log(userData)
+    // console.log(userData)
+
+    axios.post("http://localhost:8080/user/signup", userData)
+    .then((res)=>{
+      console.log(res)
+      localStorage.setItem("token", res.data.token)
+    })
+    .catch((erx)=>{
+      console.log("erx is", erx)
+    })
+
   }
+
+
+  // const authFunc = () =>{
+  //   let token = localStorage.getItem("token")
+  //   jswt.verify(token, "hanumat", (err, decode)=>{
+  //     if(decode){
+  //       console.log(decode.user)
+  //     }
+  //   })
+  // }
+
 
 
   useEffect(() => {
@@ -121,11 +146,13 @@ const Navbar = () => {
                   {register &&
                     <>
                       <h2 style={{ fontFamily: "Poppins", fontSize: "20px", textDecorationLine: "underline", textUnderlineOffset: "4px", marginBottom: "10px" }}>Register</h2>
-                      <Text style={{ fontSize: "14px", color: "grey", marginBottom: "5px" }}>Please provide your details</Text>
-                      <Input type="text" value={userData.name} borderRadius="none" borderColor={"grey"} placeholder="Enter Your Name" onChange={(e)=>dispatch({type:"NAME", payload:e.target.value})} style={{ marginBottom: "15px" }} required />
-                      <Input type="email" value={userData.email} borderRadius="none" borderColor={"grey"} placeholder="Enter Your Email" onChange={(e)=>dispatch({type:"EMAIL", payload:e.target.value})} style={{ marginBottom: "15px" }} required />
-                      <Input type="password" value={userData.password} borderRadius="none" borderColor={"grey"} placeholder="Enter Password" onChange={(e)=>dispatch({type:"PASSWORD", payload:e.target.value})} style={{ marginBottom: "15px" }} required />
-                      <button onClick={handleRegister} style={{ width: "100%", padding: "8px 0 8px 0", color: "#ffffff", backgroundColor: "#902735", margin: "auto", letterSpacing: "1px", marginBottom: "10px" }}>CONTINUE</button>
+                      <form onSubmit={handleRegister}>
+                        <Text style={{ fontSize: "14px", color: "grey", marginBottom: "5px" }}>Please provide your details</Text>
+                        <Input type="text" value={userData.name} borderRadius="none" borderColor={"grey"} placeholder="Enter Your Name" onChange={(e)=>dispatch({type:"NAME", payload:e.target.value})} style={{ marginBottom: "15px" }} required />
+                        <Input type="email" value={userData.email} borderRadius="none" borderColor={"grey"} placeholder="Enter Your Email" onChange={(e)=>dispatch({type:"EMAIL", payload:e.target.value})} style={{ marginBottom: "15px" }} required />
+                        <Input type="password" value={userData.password} borderRadius="none" borderColor={"grey"} placeholder="Enter Password" onChange={(e)=>dispatch({type:"PASSWORD", payload:e.target.value})} style={{ marginBottom: "15px" }} required />
+                        <button  style={{ width: "100%", padding: "8px 0 8px 0", color: "#ffffff", backgroundColor: "#902735", margin: "auto", letterSpacing: "1px", marginBottom: "10px" }}>SUBMIT</button>
+                      </form>
 
                     </>
                   }
@@ -138,7 +165,6 @@ const Navbar = () => {
                       <Input borderRadius="none" borderColor={"grey"} placeholder="Registerd Email" style={{ marginBottom: "15px" }} />
                       <Input borderRadius="none" borderColor={"grey"} placeholder="Password" style={{ marginBottom: "15px" }} />
                       <button style={{ width: "100%", padding: "8px 0 8px 0", color: "#ffffff", backgroundColor: "#902735", margin: "auto", letterSpacing: "1px", marginBottom: "10px" }}>CONTINUE</button>
-
                     </>
                   }
 
