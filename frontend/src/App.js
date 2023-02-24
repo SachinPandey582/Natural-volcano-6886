@@ -1,9 +1,11 @@
-import HomePage from './pages/HomePage';
+import Footer from './components/HomePage/Footer/Footer';
+import Navbar from './components/HomePage/Navbar/Navbar';
 
 function App() {
   return (
     <div className="App">
-     <HomePage/>
+      <Navbar/>
+      <Footer/>
     </div>
   );
 }

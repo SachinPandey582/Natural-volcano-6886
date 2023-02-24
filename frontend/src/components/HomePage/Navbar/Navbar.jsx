@@ -1,8 +1,9 @@
+
 import { Box, Button, IconButton, Image, Input, Menu, MenuButton, MenuItem, MenuList, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure } from '@chakra-ui/react'
 import React, { useEffect, useReducer, useState } from 'react'
 import Logo from "../../../assets/SpritsVilla.png"
 import locationFn from '../../../location/location';
-
+import { useToast } from '@chakra-ui/react'
 import { MdLocationOn } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
@@ -15,7 +16,7 @@ import { TbSearch } from "react-icons/tb";
 import "./Navbar.css"
 
 import axios from "axios"
-const jswt = require("jsonwebtoken")
+
 
 
 
@@ -23,71 +24,138 @@ const jswt = require("jsonwebtoken")
 
 
 const initialUserData = {
-  name:"",
-  email:"",
-  password:"",
-  role:"user"
+  name: "",
+  email: "",
+  password: "",
+  role: "user"
 }
 
-const reducer = (state, action) =>{
-  switch(action.type){
+
+const initialLoginUser = {
+  email: "",
+  password: "",
+}
+
+const reducer = (state, action) => {
+  switch (action.type) {
     case "NAME":
-      return {...state, name:action.payload}
+      return { ...state, name: action.payload }
     case "EMAIL":
-      return {...state, email:action.payload}
+      return { ...state, email: action.payload }
     case "PASSWORD":
-      return {...state, password:action.payload} 
+      return { ...state, password: action.payload }
     case "RESET":
       return initialUserData
     default:
-      return state     
+      return state
   }
 }
 
+const reducerLogin = (statex, actionx) => {
+  switch (actionx.type) {
+    case "EMAILX":
+      return { ...statex, email: actionx.payloadx }
+    case "PASSWORDX":
+      return { ...statex, password: actionx.payloadx }
+    case "RESETX":
+      return initialLoginUser
+    default:
+      return statex
+  }
+}
 
 
 const Navbar = () => {
 
   const [location, setLocation] = useState({});
   const [register, setRegister] = useState(false)
-  const [userData, dispatch] = useReducer(reducer, initialUserData) 
-
+  const [userName, setUserName] = useState(false)
+  const [userData, dispatch] = useReducer(reducer, initialUserData)
+  const [userDataLogin, dispatchx] = useReducer(reducerLogin, initialLoginUser)
+  const toast = useToast()
 
 
   const modal1 = useDisclosure();
   const modal2 = useDisclosure();
- 
+
 
   const handleLoginSignin = () => {
     setRegister((prev) => !prev)
   }
 
 
-  const handleRegister = (e) =>{
+  const handleRegister = (e) => {
     e.preventDefault()
-    dispatch({type:"RESET"})
+    dispatch({ type: "RESET" })
     // console.log(userData)
 
+
     axios.post("http://localhost:8080/user/signup", userData)
-    .then((res)=>{
-      console.log(res)
-      localStorage.setItem("token", res.data.token)
-    })
-    .catch((erx)=>{
-      console.log("erx is", erx)
-    })
+      .then((res) => {
+        console.log(res)
+        localStorage.setItem("token", res.data.token)
+
+        if (res.data.msg === "User Already Exist Please Login in Your Existing Account") {
+          toast({
+            title: "user already registered, please login..!",
+            status: "error",
+            isClosable: true,
+            duration: 5000,
+            position: "top",
+          })
+        }
+        else {
+          toast({
+            title: "user registerd succesfully..😊",
+            status: "success",
+            isClosable: true,
+            duration: 5000,
+            position: "top",
+          })
+        }
+      })
+      .catch((erx) => {
+        console.log("erx is", erx)
+      })
 
   }
 
 
-  // const authFunc = () =>{
-  //   let token = localStorage.getItem("token")
-  //   jswt.verify(token, "hanumat", (err, decode)=>{
-  //     if(decode){
-  //       console.log(decode.user)
-  //     }
-  //   })
-  // }
+  const handleLogin = async(e) => {
+    e.preventDefault()
+    dispatchx({ type: "RESETX" })
+    console.log(userDataLogin)
+
+    // axios.post("http://localhost:8080/user/login", userDataLogin, {
+    //   headers:{
+    //     'content-type': 'Application/json',
+    //     "Authorization": localStorage.getItem("token")
+    //   }
+    // })
+    //   .then((res) => {
+    //     console.log(res)
+        
+    //   })
+    //   .catch((errxc) => {
+    //     console.log("errxc", errxc)
+    // })
+
+    let user = await fetch("http://localhost:8080/user/login", {
+      method:"POST",
+      headers:{
+        'content-type': 'Application/json',
+        "Authorization": localStorage.getItem("token")
+      },
+      body:JSON.stringify(userDataLogin)
+    })
+
+    let res = await user.json()
+    console.log(res)
+    
+
+
+  }
+
 
 
 
@@ -95,8 +163,10 @@ const Navbar = () => {
     locationFn().then((res) => {
       setLocation(JSON.parse(localStorage.getItem("location")));
     });
+    // locationFn()
   }, []);
 
+  // console.log(location)
 
   return (
     <>
@@ -115,65 +185,93 @@ const Navbar = () => {
           <MdLocationOn /> &nbsp;{location.state}
         </Box>
 
-        <Box className='authUser' onClick={modal1.onOpen}>
-          <FaUser /> &nbsp; Sign In / Register
+        <Box className='authUser' >
+          {!userName &&
+            <>
+              <FaUser /> &nbsp; <span onClick={modal1.onOpen}>Sign In / Register</span>
 
-          <Modal isOpen={modal1.isOpen} onClose={modal1.onClose}>
-            <ModalOverlay />
-            <ModalContent className='modalContent' maxW="700px">
-              <Box className='leftModalAuth'>
-                <h3 style={{ fontSize: "18px", letterSpacing: "1px" }}>BENIFITS</h3>
-                <Box className='insideLeftModalAuth'>
-                  <SlSocialDropbox style={{ marginBottom: "10px", color: "#902735", fontSize: "30px" }} />
-                  <Text className='headTextOfModal'>Manage Orders</Text>
-                  <Text>Track, Return & Cancel your orders</Text>
-                </Box>
-                <Box className='insideLeftModalAuth'>
-                  <GiSelfLove style={{ marginBottom: "10px", color: "#902735", fontSize: "30px" }} />
-                  <Text className='headTextOfModal'>Access Products that you love</Text>
-                  <Text>Seamless access to Wishlist & Cart items</Text>
-                </Box>
-                <Box className='insideLeftModalAuth'>
-                  <BsCartCheckFill style={{ marginBottom: "10px", color: "#902735", fontSize: "30px" }} />
-                  <Text className='headTextOfModal'>Quicker Checkout</Text>
-                  <Text>Saved Addresses & bank details for 3 step checkout</Text>
-                </Box>
-              </Box>
-              <Box className='rightModalAuth'>
-                <ModalHeader><Image className='mainLogoTwo' src={Logo} alt="mainLogo" /></ModalHeader>
-                <ModalCloseButton />
-                <ModalBody>
-                  {register &&
-                    <>
-                      <h2 style={{ fontFamily: "Poppins", fontSize: "20px", textDecorationLine: "underline", textUnderlineOffset: "4px", marginBottom: "10px" }}>Register</h2>
-                      <form onSubmit={handleRegister}>
-                        <Text style={{ fontSize: "14px", color: "grey", marginBottom: "5px" }}>Please provide your details</Text>
-                        <Input type="text" value={userData.name} borderRadius="none" borderColor={"grey"} placeholder="Enter Your Name" onChange={(e)=>dispatch({type:"NAME", payload:e.target.value})} style={{ marginBottom: "15px" }} required />
-                        <Input type="email" value={userData.email} borderRadius="none" borderColor={"grey"} placeholder="Enter Your Email" onChange={(e)=>dispatch({type:"EMAIL", payload:e.target.value})} style={{ marginBottom: "15px" }} required />
-                        <Input type="password" value={userData.password} borderRadius="none" borderColor={"grey"} placeholder="Enter Password" onChange={(e)=>dispatch({type:"PASSWORD", payload:e.target.value})} style={{ marginBottom: "15px" }} required />
-                        <button  style={{ width: "100%", padding: "8px 0 8px 0", color: "#ffffff", backgroundColor: "#902735", margin: "auto", letterSpacing: "1px", marginBottom: "10px" }}>SUBMIT</button>
-                      </form>
+              <Modal isOpen={modal1.isOpen} onClose={modal1.onClose}>
+                <ModalOverlay />
+                <ModalContent className='modalContent' maxW="700px">
+                  <Box className='leftModalAuth'>
+                    <h3 style={{ fontSize: "18px", letterSpacing: "1px" }}>BENIFITS</h3>
+                    <Box className='insideLeftModalAuth'>
+                      <SlSocialDropbox style={{ marginBottom: "10px", color: "#902735", fontSize: "30px" }} />
+                      <Text className='headTextOfModal'>Manage Orders</Text>
+                      <Text>Track, Return & Cancel your orders</Text>
+                    </Box>
+                    <Box className='insideLeftModalAuth'>
+                      <GiSelfLove style={{ marginBottom: "10px", color: "#902735", fontSize: "30px" }} />
+                      <Text className='headTextOfModal'>Access Products that you love</Text>
+                      <Text>Seamless access to Wishlist & Cart items</Text>
+                    </Box>
+                    <Box className='insideLeftModalAuth'>
+                      <BsCartCheckFill style={{ marginBottom: "10px", color: "#902735", fontSize: "30px" }} />
+                      <Text className='headTextOfModal'>Quicker Checkout</Text>
+                      <Text>Saved Addresses & bank details for 3 step checkout</Text>
+                    </Box>
+                  </Box>
+                  <Box className='rightModalAuth'>
+                    <ModalHeader><Image className='mainLogoTwo' src={Logo} alt="mainLogo" /></ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody>
+                      {register &&
+                        <>
+                          <h2 style={{ fontFamily: "Poppins", fontSize: "20px", textDecorationLine: "underline", textUnderlineOffset: "4px", marginBottom: "10px" }}>Register</h2>
+                          <form onSubmit={handleRegister}>
+                            <Text style={{ fontSize: "14px", color: "grey", marginBottom: "5px" }}>Please provide your details</Text>
+                            <Input type="text" value={userData.name} borderRadius="none" borderColor={"grey"} placeholder="Enter Your Name" onChange={(e) => dispatch({ type: "NAME", payload: e.target.value })} style={{ marginBottom: "15px" }} required />
+                            <Input type="email" value={userData.email} borderRadius="none" borderColor={"grey"} placeholder="Enter Your Email" onChange={(e) => dispatch({ type: "EMAIL", payload: e.target.value })} style={{ marginBottom: "15px" }} required />
+                            <Input type="password" value={userData.password} borderRadius="none" borderColor={"grey"} placeholder="Enter Password" onChange={(e) => dispatch({ type: "PASSWORD", payload: e.target.value })} style={{ marginBottom: "15px" }} required />
+                            <button style={{ width: "100%", padding: "8px 0 8px 0", color: "#ffffff", backgroundColor: "#902735", margin: "auto", letterSpacing: "1px", marginBottom: "10px" }}>SUBMIT</button>
+                          </form>
 
-                    </>
-                  }
+                        </>
+                      }
 
-                  {!register &&
-                    <>
-                      <h2 style={{ fontFamily: "Poppins", fontSize: "20px", textDecorationLine: "underline", textUnderlineOffset: "4px", marginBottom: "10px" }}>Login / Sign Up</h2>
-                      <Text style={{ fontSize: "14px", color: "grey", marginBottom: "5px" }}>Please provide your details</Text>
-                      {/* <Input borderRadius="none" borderColor={"grey"} placeholder="Enter Your Name" style={{ marginBottom: "15px" }} /> */}
-                      <Input borderRadius="none" borderColor={"grey"} placeholder="Registerd Email" style={{ marginBottom: "15px" }} />
-                      <Input borderRadius="none" borderColor={"grey"} placeholder="Password" style={{ marginBottom: "15px" }} />
-                      <button style={{ width: "100%", padding: "8px 0 8px 0", color: "#ffffff", backgroundColor: "#902735", margin: "auto", letterSpacing: "1px", marginBottom: "10px" }}>CONTINUE</button>
-                    </>
-                  }
+                      {!register &&
+                        <>
+                          <h2 style={{ fontFamily: "Poppins", fontSize: "20px", textDecorationLine: "underline", textUnderlineOffset: "4px", marginBottom: "10px" }}>Login / Sign Up</h2>
+                          <form onSubmit={handleLogin}>
+                            <Text style={{ fontSize: "14px", color: "grey", marginBottom: "5px" }}>Please provide your details</Text>
+                            <Input type="email" value={userDataLogin.email} borderRadius="none" borderColor={"grey"} placeholder="Registerd Email" style={{ marginBottom: "15px" }} onChange={(e) => dispatchx({ type: "EMAILX", payloadx: e.target.value })} required />
+                            <Input type="password" value={userDataLogin.password} borderRadius="none" borderColor={"grey"} placeholder="Password" style={{ marginBottom: "15px" }} onChange={(e) => dispatchx({ type: "PASSWORDX", payloadx: e.target.value })} required />
+                            <button style={{ width: "100%", padding: "8px 0 8px 0", color: "#ffffff", backgroundColor: "#902735", margin: "auto", letterSpacing: "1px", marginBottom: "10px" }}>CONTINUE</button>
+                          </form>
+                        </>
+                      }
 
-                  <Text style={{ cursor: "pointer" }} onClick={handleLoginSignin}>{(register && "Already Registered ? / Login")||(!register && "New User ? / Register")}</Text>
-                </ModalBody>
-              </Box>
-            </ModalContent>
-          </Modal>
+                      <Text style={{ cursor: "pointer" }} onClick={handleLoginSignin}>{(register && "Already Registered ? / Login") || (!register && "New User ? / Register")}</Text>
+                    </ModalBody>
+                  </Box>
+                </ModalContent>
+              </Modal>
+            </>
+          }
 
+          {/* {userName &&
+            <>  
+            <Menu>
+                
+                
+                  <MenuButton>
+                  <span>Official User</span>
+                  </MenuButton>
+                  <MenuList>
+                    <MenuItem style={{color:"#902735", fontFamily:"Poppins", textDecorationLine:"underline", textUnderlineOffset:"2px"}}> My Account</MenuItem>
+                    <MenuItem style={{color:"#902735", fontFamily:"Poppins", textDecorationLine:"underline", textUnderlineOffset:"2px"}}> My Orders</MenuItem>
+                    <MenuItem style={{color:"#902735", fontFamily:"Poppins", textDecorationLine:"underline", textUnderlineOffset:"2px"}}> My Wishlist</MenuItem>
+                    <MenuItem style={{color:"#902735", fontFamily:"Poppins", textDecorationLine:"underline", textUnderlineOffset:"2px"}}> My Address</MenuItem>
+                    <MenuItem style={{color:"#902735", fontFamily:"Poppins", textDecorationLine:"underline", textUnderlineOffset:"2px"}}> My Bank Details</MenuItem>
+                    <MenuItem style={{color:"#902735", fontFamily:"Poppins", textDecorationLine:"underline", textUnderlineOffset:"2px"}}> Wallet</MenuItem>
+                    <MenuItem style={{color:"#902735", fontFamily:"Poppins", textDecorationLine:"underline", textUnderlineOffset:"2px"}}> My Shared Products</MenuItem>
+                    <MenuItem style={{color:"#902735", fontFamily:"Poppins", textDecorationLine:"underline", textUnderlineOffset:"2px"}}> Raise Ticket</MenuItem>
+                    <MenuItem style={{color:"#902735", fontFamily:"Poppins", textDecorationLine:"underline", textUnderlineOffset:"2px"}}> Logout</MenuItem>
+                  </MenuList>
+                </Menu>
+
+            </>
+            } */}
         </Box>
 
         <Box className='wishList'>
@@ -241,7 +339,7 @@ const Navbar = () => {
           <Box className='authUser'>
             <FaUser /> &nbsp;
 
-                    
+
 
 
 

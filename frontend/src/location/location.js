@@ -6,6 +6,7 @@ const getData = async (lat, lon) => {
     `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`
   );
   let data = await res.json();
+  // console.log("locationData", data)
   return data;
 };
 
@@ -26,6 +27,7 @@ async function locationFn(e) {
         district: res.address.state_district,
       };
       localStorage.setItem("location", JSON.stringify(data));
+      // console.log(data)
       return ;
     });
     //  console.log(data);
@@ -36,5 +38,15 @@ async function locationFn(e) {
     return err;
   }
 }
+
+
+
+
+
+
+
+
+
+
 
 export default locationFn;
