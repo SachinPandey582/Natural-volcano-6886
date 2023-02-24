@@ -4,13 +4,14 @@
     grid-template-columns: 15% 85%;
 }
 .firstContainer{
+    position: static;
     border-radius: 20px;
     box-shadow: rgba(240, 46, 170, 0.4) -5px 5px, rgba(240, 46, 170, 0.3) -10px 10px, rgba(240, 46, 170, 0.2) -15px 15px, rgba(240, 46, 170, 0.1) -20px 20px, rgba(240, 46, 170, 0.05) -25px 25px;
 }
 
-.secondContainer{
+/* .secondContainer{
     
-}
+} */
 .logoofmypage >img{
     width: 100%;
     border-radius: 20px;
@@ -88,3 +89,8 @@
 
 
 /* //till here there were the things that was for the sidebar  */
+
+.productcards{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+}

@@ -1,12 +1,12 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import AdminPage from '../pages/AdminPage'
-import AdminLandingPage from '../pages/Check'
+// import AdminLandingPage from '../pages/Check'
 const AllRoutes = () => {
   return (
     <div>
       <Routes >
-<Route path='/' element={<AdminLandingPage/>}></Route>
+{/* <Route path='/' element={<AdminLandingPage/>}></Route> */}
 <Route path='/admin' element={<AdminPage/>}></Route>
       </Routes>
     </div>

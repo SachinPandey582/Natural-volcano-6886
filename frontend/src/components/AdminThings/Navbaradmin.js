@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 import {
   Box,
   Flex,
@@ -35,9 +35,13 @@ const NavLink = ({ children }) => (
   </Link>
 );
 
-export default function NavbarOfAdmin() {
+export default function NavbarOfAdmin( payload) {
+ 
+  const [query, setQuery] = useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+ const onSearchinpage=()=>{
+  console.log(query)
+ }
   return (
     <>
       <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
@@ -50,20 +54,20 @@ export default function NavbarOfAdmin() {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={'center'}>
-            <Box>Logo</Box>
-            <Box display={"flex"} width="30%">
-            <Input type="text" placeholder="Search.." name="search2"></Input>
-  <Button type="submit"><i class="fa fa-search"></i></Button>
+            <Box>Welcome Admin</Box>
+            <Box display={"flex"} width="60%">
+              <Input type="text" placeholder="Search.." onChange={(e) => setQuery(e.target.value)} name="search2"></Input>
+              <Button bg={"gray.300"} onClick={() => onSearchinpage(query)} type="submit">Search</Button>
             </Box>
 
-            <HStack
+            {/* <HStack
               as={'nav'}
               spacing={4}
               display={{ base: 'none', md: 'flex' }}>
               {Links.map((link) => (
                 <NavLink key={link}>{link}</NavLink>
               ))}
-            </HStack>
+            </HStack> */}
           </HStack>
           <Flex alignItems={'center'}>
             <Button
@@ -109,7 +113,7 @@ export default function NavbarOfAdmin() {
         ) : null}
       </Box>
 
-      <Box p={4}>Main Content Here</Box>
+
     </>
   );
 }
