@@ -1,17 +1,13 @@
-import AllRoutes from './AllRoutes/Routes';
-
-
-import Footer from './components/HomePage/Footer/Footer';
-import Navbar from './components/HomePage/Navbar/Navbar';
+import logo from './logo.svg';
+import './App.css';
+import HomePage from './Pages/HomePage';
 
 function App() {
   return (
     
     <div className="App">
     
-      <Navbar/>
-    <AllRoutes/>
-      <Footer/>
+     <HomePage/>
     </div>
   );
 }
