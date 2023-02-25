@@ -38,7 +38,6 @@ src="https://cdn.plotch.io/image/upload/w_118,h_118/C/V/PLOmPKcSpC1668584370_6b8
              <Button margin="auto" width={"20%"} marginTop={"5%"}  backgroundColor="#902935"><DeleteIcon color="white"/></Button>
 
           </SimpleGrid>
-
         </SimpleGrid>
         <SimpleGrid columnGap={10} style={{
           boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
