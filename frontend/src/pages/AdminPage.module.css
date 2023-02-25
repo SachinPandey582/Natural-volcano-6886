@@ -1,0 +1,107 @@
+.mainContainer{
+    border: 2px solid;
+    display: grid;
+    grid-template-columns: 15% 85%;
+}
+.firstContainer{
+    position: static;
+    border-radius: 20px;
+    box-shadow: rgba(240, 46, 170, 0.4) -5px 5px, rgba(240, 46, 170, 0.3) -10px 10px, rgba(240, 46, 170, 0.2) -15px 15px, rgba(240, 46, 170, 0.1) -20px 20px, rgba(240, 46, 170, 0.05) -25px 25px;
+}
+
+/* .secondContainer{
+    
+} */
+.logoofmypage >img{
+    width: 100%;
+    border-radius: 20px;
+
+}
+.logoofmyavatar{
+    align-content: center;
+}
+.logoofmyavatar >img{
+    /* width: 100%; */
+    height: 100px;
+
+}
+.center{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    border-radius: 50%;
+    margin-top: 20%;
+}
+.Nameofperson{
+    display: block;
+    margin-left: 10%;
+    font-size: x-large;
+    font-weight: bolder;
+}
+.position{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    margin-top: -10px;
+}
+.logoutcombo{
+    margin: auto;
+    width:90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 60px;
+    font-weight: bold;
+}
+.Sidebarfirstsection{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    width: 100%;
+    
+    
+}
+.Sidebarfirstsection >div{
+    margin-left : auto;
+    margin-right: auto;
+    width: fit-content;
+    padding: 10%;
+    font-size: 100%;
+    font-weight: bolder;
+}
+.Sidebarsecondsection >div{
+    margin-left : auto;
+    margin-right: auto;
+    width: fit-content;
+    padding: 10%;
+    font-size: 100%;
+    font-weight: bolder;
+}
+.Sidebarsecondsection{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+.Sidebarsecondsection:hover{
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.Sidebarfirstsection:hover{
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+
+/* //till here there were the things that was for the sidebar  */
+
+.productcards{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+}
+.Products  div:first-child{
+    /* border: 2px solid red; */
+    padding: 2%;
+    background-color: red;
+    color:aliceblue ;
+    /* border-radius: 20%;/ */
+    font-size: 270%;
+    font-weight: bolder;
+    margin: auto;
+    width: fit-content;
+}

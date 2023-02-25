@@ -1,0 +1,201 @@
+.navbarContainer{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    position: sticky;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.navbarContainerSmall{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    position: sticky;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.smallScreenNavbar{
+    display: flex;
+    justify-content: space-around;
+    width: 150px;
+}
+
+.mainLogo{
+    width: 150px;
+    cursor: pointer;
+}
+
+.mainLogoTwo{
+    width: 100px;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+.searchContainer{
+    /* border: 1px solid blue; */
+    width: 430px;
+    padding: -5px 0 -5px 0;
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+    background-color: #dddddd;
+    border-radius: 5px;
+
+}
+
+.searchBox{
+    width: 100%;
+    
+}
+.searchBox>input{
+    width: 280px;
+    background-color: #dddddd;
+    outline: none;
+    border: none;
+    padding-left: 5px;
+}
+.location{
+    display: flex;
+    align-items: center;
+}
+
+.searchIcon{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding-left: 10px;
+}
+.authUser{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.handleLoginText{
+    cursor: pointer;
+}
+.handleLoginText:hover{
+    text-decoration-line: underline;
+    text-underline-offset: 4px;
+}
+#togglePassword{
+    z-index: 10;
+}
+#togglePassword:hover{
+    cursor: pointer;
+}
+.wishList{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.cart{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.menuIconDesign{
+    color: #902735 !important;
+    font-weight: bold;
+    font-family: "Poppins";
+}
+
+/* style={{color:"#902735", fontWeight:'bold', fontFamily: 'Poppins'}} */
+
+
+
+
+
+
+
+.marronNavbar{
+    width: 100%;
+    background-color: #902735;
+    color: #ffffff;
+    padding: 12px 0 12px 0;
+}
+
+.insideMaroonNavbar{
+    width: 50%;
+    margin: auto;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.insideMaroonNavbar>p{
+    cursor: pointer;
+}
+
+
+.modal{
+    width: 800px !important;
+}
+
+
+.modalContent{
+    display: flex !important;
+    flex-direction: row !important;
+}
+
+
+.leftModalAuth{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    /* border: 2px solid red; */
+    padding: 30px;
+    text-align: center;
+    background-color: #f0eded;
+}
+
+.insideLeftModalAuth{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.headTextOfModal{
+    font-family: "Poppins";
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.rightModalAuth{
+    width: 400px;
+    padding: 10px;
+}
+
+
+
+@media all and (min-width:1001px) and (max-width:1400px){
+    .navbarContainerSmall{
+        display: none;
+    }
+}
+
+@media all and (min-width:300px) and (max-width:1000px){
+    .navbarContainer{
+        display: none;
+    }
+    .marronNavbar{
+        display: none;
+    }
+}
+
+
+@media all and (min-width:300px) and (max-width:510px){
+    .leftModalAuth{
+        display: none;
+    }
+}
+
+
+@media all and (min-width:300px) and (max-width:380px){
+    .mainLogo{
+        width: 100px;
+        margin-top: 8px;
+    }
+}
