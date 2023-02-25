@@ -5,6 +5,7 @@ import ADcss from "./AdminPage.module.css";
 import axios from "axios";
 
 import { useNavigate } from "react-router-dom";
+import NumberGraph from "../components/AdminThings/Graph";
 
 const AdminPage = () => {
   const [data, setdata] = useState([]);
@@ -70,7 +71,7 @@ const AdminPage = () => {
         </div>
         <div className={ADcss.Sidebarsecondsection}>
           <div onClick={() => navigate("/admin/addtheproduct")}>
-            Edit the Products
+            Add the Products
           </div>
         </div>
         <div className={ADcss.Sidebarsecondsection}>
@@ -124,7 +125,16 @@ const AdminPage = () => {
 </div>
 <br/>
 <br/>
+<div style={{display:"flex"}}>
 
+<div>
+<NumberGraph num1={data1.length} num2={data2.length} num3={data3.length}/> 
+
+</div>
+<div>
+    here is the graph of the products 
+</div>
+</div>
 
         <br />
       </div>

@@ -24,6 +24,7 @@ const TableComponent = ({ data }) => {
           <Th>Name</Th>
           <Th>Email</Th>
           <Th>Role</Th>
+          <Th>password</Th>
         </Tr>
       </Thead>
       <Tbody>
@@ -32,6 +33,7 @@ const TableComponent = ({ data }) => {
             <Td>{item.name}</Td>
             <Td>{item.email}</Td>
             <Td>{item.role}</Td>
+            <Td>{item.password}</Td>
           </Tr>
         ))}
       </Tbody>

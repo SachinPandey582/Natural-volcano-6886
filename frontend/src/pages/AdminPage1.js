@@ -52,7 +52,9 @@ const navigate=useNavigate()
         </div>
         {/* /admin/checktheusers */}
         <div className={ADcss.Sidebarsecondsection}>
-          <div >Add the Product</div>
+        <div onClick={() => navigate("/admin/addtheproduct")}>
+            Add the Products
+          </div>
         </div>
         <div className={ADcss.Sidebarsecondsection}>
           <div onClick={()=>navigate("/admin/checktheusers")}>Check All The Users</div>

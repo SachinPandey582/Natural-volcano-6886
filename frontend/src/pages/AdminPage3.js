@@ -3,10 +3,8 @@ import React, { useEffect, useState } from 'react'
 import NavbarOfAdmin from '../components/AdminThings/Navbaradmin'
 import ADcss from "./AdminPage.module.css"
 import axios from "axios"
-import ProductAddToCart from '../components/AdminThings/ProductCard'
-import { Button, Input, list, Popover, PopoverArrow, PopoverBody, PopoverCloseButton, PopoverContent, PopoverHeader, PopoverTrigger } from '@chakra-ui/react'
+import { Button, Input,  Popover, PopoverArrow, PopoverBody, PopoverCloseButton, PopoverContent, PopoverHeader, PopoverTrigger } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
-import MyTable from '../components/AdminThings/ProductTable'
 import {
     Table,
     Thead,
@@ -14,8 +12,7 @@ import {
     Tr,
     Th,
     Td,
-    Image,
-    
+    Image,    
     Box,
     Flex,
   } from '@chakra-ui/react';
@@ -29,16 +26,7 @@ const AdminPage = () => {
     const [currpage, setcurrpage] = useState(1)
     //here i am setting the page of the data 
 
-    const [totalpage, settotalpage] = useState(0)
-    //here i am setting the total no of pages of the data 
-
-    const [searchTerm, setSearchTerm] = useState("")
-    //here this is going to use by me for search functionality
-
-    const [loading, setloading] = useState(false)
-    //here this is the loading part to solve the loading indicator here 
-    const [category, sercategory] = useState(0)
-    //here this is for the category of the data
+   
 
 const navigate=useNavigate()
    const [counter,setcounter]=useState(0)
@@ -174,9 +162,9 @@ const AllTheCategory=async()=>{
                     </div>
                 </div>
                 <div className={ADcss.Sidebarsecondsection}>
-                    <div onClick={()=>navigate("/admin/addtheproduct")}>
-                        Edit the Products
-                    </div>
+                <div onClick={() => navigate("/admin/addtheproduct")}>
+            Add the Products
+          </div>
 
                 </div>
                 <div className={ADcss.Sidebarsecondsection}>
@@ -188,9 +176,7 @@ const AllTheCategory=async()=>{
                     </div>
 
                 </div><div className={ADcss.Sidebarsecondsection}>
-                    <div>
-                        Collections
-                    </div>
+                <div onClick={()=>navigate("/admin/seeallthecollections")}>Collections</div>
 
                 </div>
                 <div className={ADcss.logoutcombo}> <div>
@@ -241,14 +227,7 @@ const AllTheCategory=async()=>{
               <Td>{item._id}</Td>
               <Td>
                 <Flex>
-                  {/* <Button
-                    size="sm"
-                    mr={{ base: '2', md: '4' }}
-                    // onClick={() => onEdit(item)}
-                  > */}
-
-                    {/* Edit */}
-                  {/* </Button> */}
+                 
                   <Popover>
   <PopoverTrigger>
   <Button >Edit</Button>
@@ -299,12 +278,8 @@ const AllTheCategory=async()=>{
       </Table>
     </Box>
                 </div>
-                <div>
-
-                </div>
-                <div></div>
-                <div></div>
-                <div></div>
+                
+                
             </div>
         </div>
     )

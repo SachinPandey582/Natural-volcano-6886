@@ -130,9 +130,9 @@ const AllTheCategory=async()=>{
                     </div>
                 </div>
                 <div className={ADcss.Sidebarsecondsection}>
-                    <div onClick={()=>navigate("/admin/addtheproduct")}>
-                        Edit the Products
-                    </div>
+                <div onClick={() => navigate("/admin/addtheproduct")}>
+            Add the Products
+          </div>
 
                 </div>
                 <div className={ADcss.Sidebarsecondsection}>
@@ -144,7 +144,7 @@ const AllTheCategory=async()=>{
                     </div>
 
                 </div><div className={ADcss.Sidebarsecondsection}>
-                <div onClick={()=>navigate("/admin/seeallthecollections")}>Check All The Users</div>
+                <div onClick={()=>navigate("/admin/seeallthecollections")}>Collections</div>
 
                 </div>
                 <div className={ADcss.logoutcombo}> <div>
@@ -169,11 +169,7 @@ const AllTheCategory=async()=>{
                   
              
 
-                <Center>
-                          <Heading>
-                        Admins
-                    </Heading>
-                    </Center>
+               
                 </div>
              
                 <TableComponent data={data} />;
