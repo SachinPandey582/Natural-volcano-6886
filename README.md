@@ -15,9 +15,9 @@
 
 # 🧑🏻‍🦰 **Sachin Pandey** `Team Lead`
 
-- Github:()
-- Linkedin:()
-- Email: ()
+- Github:(https://github.com/SachinPandey582)
+- Linkedin:(https://www.linkedin.com/in/sachin-pandey-web582/)
+- Email: (sachinpandey582@gmail.com)
 
 # 🧔🏻 **Aman Singh Rajawat**
 

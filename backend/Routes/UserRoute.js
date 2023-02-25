@@ -42,7 +42,7 @@ UserRouter.post("/user/signup", async (req, res) => {
         console.log(user);
 
         const token = jswt.sign({ user: user[0] }, "hanumat");
-        res.send({ msg: "User Registered Succesfully", token: token });
+        res.send({ msg: "User Registered Succesfully", token: token,name:user[0].name,email:user[0].email });
       });
     }
   } catch (error) {
@@ -59,7 +59,7 @@ UserRouter.post("/user/login", async (req, res) => {
         if (error) res.send({ msg: "Password Is Not Correct" });
         if (result == true) {
           const token = jswt.sign({ user: user[0] }, "hanumat");
-          res.send({ msg: `Welcome Back ${user[0].name}`, token: token });
+          res.send({ msg: `Welcome Back ${user[0].name}`, token: token,name:user[0].name,email:user[0].password });
         }
       });
     } else {
