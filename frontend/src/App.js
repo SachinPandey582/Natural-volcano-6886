@@ -3,7 +3,7 @@
 import AllRoutes from './AllRoutes/Routes';
 import Footer from './components/HomePage/Footer/Footer';
 import Navbar from './components/HomePage/Navbar/Navbar';
-import HomePage from './Pages/HomePage';
+
 
 function App() {
   return (
