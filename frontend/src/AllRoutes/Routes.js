@@ -10,9 +10,7 @@ const AllRoutes = () => {
   return (
     <div>
       <Routes >
-{/* <Route path='/' element={<AdminLandingPage/>}></Route> */}
 
-<Route path='/' element={<HomePage/>}></Route>
 <Route path='/admin' element={<AdminPage/>}></Route>
 <Route path='/admin/addtheproduct' element={<AdminPage1/>}></Route>
 <Route path='/admin/checktheusers' element={<AdminPage2/>}></Route>

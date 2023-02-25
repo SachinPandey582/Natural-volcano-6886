@@ -1,0 +1,53 @@
+.footerWrapper{
+    width: 100%;
+    background-color: #902735;
+    height: auto;
+    /* border: 1px solid blue; */
+    margin-top: 50px;
+}
+
+.footerBox{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-between;
+    /* border: 1px solid red; */
+}
+.footerBox>div{
+    width: 23%;
+}
+
+.footerBox>div>h1{
+    font-family: "Poppins";
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.footerBox>div>p{
+    cursor: pointer;
+}
+
+
+@media all and (min-width:300px) and (max-width:510px){
+    
+}
+
+@media all and (min-width:300px) and (max-width:510px){
+    
+}
+
+@media all and (min-width:300px) and (max-width:1000px){
+    .footerBox{
+        flex-direction: column;
+    }
+
+    .footerBox>div{
+        width: 80%;
+        margin: auto;
+    }
+    
+}
