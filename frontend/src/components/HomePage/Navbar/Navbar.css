@@ -71,6 +71,19 @@
     cursor: pointer;
 }
 
+.handleLoginText{
+    cursor: pointer;
+}
+.handleLoginText:hover{
+    text-decoration-line: underline;
+    text-underline-offset: 4px;
+}
+#togglePassword{
+    z-index: 10;
+}
+#togglePassword:hover{
+    cursor: pointer;
+}
 .wishList{
     display: flex;
     align-items: center;
