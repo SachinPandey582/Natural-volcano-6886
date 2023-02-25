@@ -4,13 +4,14 @@ import NavbarOfAdmin from '../components/AdminThings/Navbaradmin'
 import ADcss from "./AdminPage.module.css"
 import axios from "axios"
 import ProductAddToCart from '../components/AdminThings/ProductCard'
-import { Button, list } from '@chakra-ui/react'
+import { Button, Center, Heading, list } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
+import TableComponent from '../components/AdminThings/UsersDataTable'
 
 
 
 
-const AdminPage = () => {
+const AdminPage2 = () => {
     const [data, setdata] = useState([])
     //here i am getting  all the data 
 
@@ -88,6 +89,19 @@ const AllTheCategory=async()=>{
 
     }
 
+    const data1 = [
+        {
+          name: "John Doe",
+          email: "john.doe@example.com",
+          role: "Developer",
+        },
+        {
+          name: "Jane Doe",
+          email: "jane.doe@example.com",
+          role: "Designer",
+        },
+        // add more data here
+      ]
 
     console.log(data)
     useEffect(() => {
@@ -123,16 +137,14 @@ const AllTheCategory=async()=>{
                 </div>
                 <div className={ADcss.Sidebarsecondsection}>
                 <div onClick={()=>navigate("/admin/checktheusers")}>Check All The Users</div>
-
+                {/* seeallthecollections */}
                 </div><div className={ADcss.Sidebarsecondsection}>
                     <div>
                         Todays Order
                     </div>
 
                 </div><div className={ADcss.Sidebarsecondsection}>
-                    <div>
-                        Collections
-                    </div>
+                <div onClick={()=>navigate("/admin/seeallthecollections")}>Check All The Users</div>
 
                 </div>
                 <div className={ADcss.logoutcombo}> <div>
@@ -146,40 +158,30 @@ const AllTheCategory=async()=>{
             {/* //second container is present here  */}
             <div className={ADcss.secondContainer}>
                 <NavbarOfAdmin  />
-                <div>
-                    Total No of Products {data.length}
-                </div>
-                <br />
-                <div>
-                    Filter by price- <Button onClick={() => Hightolow()}>High to low </Button> <Button onClick={() => LowToHigh()}>Low to high </Button>
-                </div>
-                <br />
-                <div>
-                    Filter by Category- <Button onClick={() => hommeCategory()}>Home </Button> <Button onClick={() => BeautyCategory()}>Beauty </Button> <Button onClick={() => FashionCategory()}>Fashion </Button> <Button onClick={() => AllTheCategory()}>All the Products</Button>
-                </div>
-                <br />
+               
               
-              
-                <div className={ADcss.productcards}>
-                    {
-
-                        data.map((el) => (
-
-                             <ProductAddToCart    id={el._id}  imageURL={el.img} name={el.title} price={el.price} />
-                        )
-                        )
-                    }
-                </div>
                 <div>
+                    <Center>
+                          <Heading>
+                        Users
+                    </Heading>
+                    </Center>
+                  
+             
 
+                <Center>
+                          <Heading>
+                        Admins
+                    </Heading>
+                    </Center>
                 </div>
-                <div></div>
-                <div></div>
-                <div></div>
+             
+                <TableComponent data={data} />;
+                
             </div>
         </div>
     )
 }
 
-export default AdminPage
+export default AdminPage2
 

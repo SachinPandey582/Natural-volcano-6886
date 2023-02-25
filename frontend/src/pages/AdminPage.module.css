@@ -94,3 +94,14 @@
     display: grid;
     grid-template-columns: repeat(3,1fr);
 }
+.Products  div:first-child{
+    /* border: 2px solid red; */
+    padding: 2%;
+    background-color: red;
+    color:aliceblue ;
+    /* border-radius: 20%;/ */
+    font-size: 270%;
+    font-weight: bolder;
+    margin: auto;
+    width: fit-content;
+}
