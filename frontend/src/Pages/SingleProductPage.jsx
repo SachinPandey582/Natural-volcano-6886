@@ -45,7 +45,7 @@ const SingleProductPage = () => {
 
             <SimpleGrid borderRadius={20} columns={[1, 1, 1, 2]} gap={5} padding={5} width={"90%"}
                 margin="auto" boxShadow="rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;" >
-                <Image margin="auto" borderRadius={20}
+                <Image padding={5} boxShadow={"rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;"} margin="auto" borderRadius={20}
                     src={product.img} />
                 <Box>
                     <Text noOfLines={[2, 2, 2, 2,]} fontWeight={"bold"} fontSize="25px">
