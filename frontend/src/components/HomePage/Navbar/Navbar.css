@@ -170,13 +170,9 @@
 
 
 
-@media all and (min-width:1001px) and (max-width:1400px){
-    .navbarContainerSmall{
-        display: none;
-    }
-}
 
-@media all and (min-width:300px) and (max-width:1000px){
+
+@media all and (min-width:300px) and (max-width:900px){
     .navbarContainer{
         display: none;
     }
@@ -185,6 +181,11 @@
     }
 }
 
+@media all and (min-width:901px) and (max-width:1400px){
+    .navbarContainerSmall{
+        display: none;
+    }
+}
 
 @media all and (min-width:300px) and (max-width:510px){
     .leftModalAuth{

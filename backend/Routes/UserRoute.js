@@ -42,7 +42,7 @@ UserRouter.post("/user/signup", async (req, res) => {
         console.log(user);
 
         const token = jswt.sign({ user: user[0] }, "hanumat");
-        res.send({ msg: "User Registered Succesfully", token: token,name:user[0].name,email:user[0].email });
+        res.send({ msg: "User Registered Succesfully", token: token, name, email });
       });
     }
   } catch (error) {

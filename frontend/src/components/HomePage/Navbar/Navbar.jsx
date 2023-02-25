@@ -23,6 +23,7 @@ import Logo from "../../../assets/SpritsVilla.png";
 import locationFn from "../../../location/location";
 import { useToast } from "@chakra-ui/react";
 import { MdLocationOn } from "react-icons/md";
+import {useDispatch, useSelector} from "react-redux"
 import { FaUser } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 import { BsSuitHeartFill } from "react-icons/bs";
@@ -35,7 +36,9 @@ import { AiFillEyeInvisible } from "react-icons/ai";
 import { TbSearch } from "react-icons/tb";
 import "./Navbar.css";
 
-import axios from "axios";
+// import axios from "axios";
+// import { postUserData } from "../../../Redux/Auth/auth.api";
+import { handleUserLogin, handleUserPost } from "../../../Redux/Auth/auth.action";
 
 const initialUserData = {
   name: "",
@@ -80,13 +83,17 @@ const reducerLogin = (statex, actionx) => {
 const Navbar = () => {
   const [location, setLocation] = useState({});
   const [register, setRegister] = useState(true);
-  const [userName, setUserName] = useState(false);
+  // const [userName, setUserName] = useState(false);
   const [typePass, setTypePass] = useState(true);
   const [eyeIcon, setEyeIcon] = useState(true);
   const [userData, dispatch] = useReducer(reducer, initialUserData);
   const [userDataLogin, dispatchx] = useReducer(reducerLogin, initialLoginUser);
   const toast = useToast();
-
+  const dispatchData = useDispatch()
+  const isAuth = useSelector((store)=>store.authState.isAuth)
+  const authData = useSelector((store)=>store.authState.authData)
+  console.log(authData)
+  console.log(isAuth)
   const modal1 = useDisclosure();
   const modal2 = useDisclosure();
 
@@ -94,95 +101,110 @@ const Navbar = () => {
     setRegister((prev) => !prev);
   };
 
-  const handleRegister = (e) => {
-    e.preventDefault();
-    dispatch({ type: "RESET" });
-    // console.log(userData)
+  // const handleRegister = (e) => {
+  //   e.preventDefault();
+  //   dispatch({ type: "RESET" });
+  //   // console.log(userData)
 
-    axios
-      .post("http://localhost:8080/user/signup", userData)
-      .then((res) => {
-        console.log(res);
-        localStorage.setItem("token", res.data.token);
+  //   axios
+  //     .post("http://localhost:8080/user/signup", userData)
+  //     .then((res) => {
+  //       console.log(res);
+  //       localStorage.setItem("token", res.data.token);
 
-        if (
-          res.data.msg ===
-          "User Already Exist Please Login in Your Existing Account"
-        ) {
-          toast({
-            description: "user already registered, please login..!",
-            status: "error",
-            isClosable: true,
-            variant: "top-accent",
-            duration: 5000,
-            position: "top",
-          });
-        } else {
-          toast({
-            description: "user registerd succesfully..😊",
-            status: "success",
-            isClosable: true,
-            variant: "top-accent",
-            duration: 5000,
-            position: "top",
-          });
-        }
-      })
-      .catch((erx) => {
-        console.log("erx is", erx);
-      });
-  };
+  //       if (
+  //         res.data.msg ===
+  //         "User Already Exist Please Login in Your Existing Account"
+  //       ) {
+  //         toast({
+  //           description: "user already registered, please login..!",
+  //           status: "error",
+  //           isClosable: true,
+  //           variant: "top-accent",
+  //           duration: 5000,
+  //           position: "top",
+  //         });
+  //       } else {
+  //         toast({
+  //           description: "user registerd succesfully..😊",
+  //           status: "success",
+  //           isClosable: true,
+  //           variant: "top-accent",
+  //           duration: 5000,
+  //           position: "top",
+  //         });
+  //       }
+  //     })
+  //     .catch((erx) => {
+  //       console.log("erx is", erx);
+  //     });
+  // };
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    dispatchx({ type: "RESETX" });
-    // console.log(userDataLogin);
+  // const handleLogin = async (e) => {
+  //   e.preventDefault();
+  //   dispatchx({ type: "RESETX" });
+  //   // console.log(userDataLogin);
 
 
-    let user = await fetch("http://localhost:8080/user/login", {
-      method: "POST",
-      headers: {
-        "content-type": "Application/json",
-        Authorization: localStorage.getItem("token"),
-      },
-      body: JSON.stringify(userDataLogin),
-    });
+  //   let user = await fetch("http://localhost:8080/user/login", {
+  //     method: "POST",
+  //     headers: {
+  //       "content-type": "Application/json",
+  //       Authorization: localStorage.getItem("token"),
+  //     },
+  //     body: JSON.stringify(userDataLogin),
+  //   });
 
-    let res = await user.json();
-    console.log(res);
-    if (res.msg === "Account Not Exist") {
-      toast({
-        description: "Entered data is not correct, Please check once again..!",
-        status: "warning",
-        isClosable: true,
-        variant: "top-accent",
-        duration: 5000,
-        position: "top",
-      })
-    }
-    else if (res.msg === "Welcome Back nora fatehi") {
-      toast({
-        description: `Namastey 🙏, Nora`,
-        status: "success",
-        variant: "subtle",
-        isClosable: true,
-        duration: 5000,
-        position: "top",
-      })
-      setUserName((prev) => !prev)
-    }
-    else {
-      toast({
-        description: `Something went wrong, Please check in sometime..!`,
-        status: "error",
-        isClosable: true,
-        variant: "top-accent",
-        duration: 5000,
-        position: "top",
-      })
-    }
+  //   let res = await user.json();
+  //   console.log(res);
+  //   if (res.msg === "Account Not Exist") {
+  //     toast({
+  //       description: "Entered data is not correct, Please check once again..!",
+  //       status: "warning",
+  //       isClosable: true,
+  //       variant: "top-accent",
+  //       duration: 5000,
+  //       position: "top",
+  //     })
+  //   }
+  //   else if (res.msg === "Welcome Back nora fatehi") {
+  //     toast({
+  //       description: `Namastey 🙏, Nora`,
+  //       status: "success",
+  //       variant: "subtle",
+  //       isClosable: true,
+  //       duration: 5000,
+  //       position: "top",
+  //     })
+  //     setUserName((prev) => !prev)
+  //   }
+  //   else {
+  //     toast({
+  //       description: `Something went wrong, Please check in sometime..!`,
+  //       status: "error",
+  //       isClosable: true,
+  //       variant: "top-accent",
+  //       duration: 5000,
+  //       position: "top",
+  //     })
+  //   }
 
-  };
+  // };
+
+  const handleRegister =(e) =>{
+    e.preventDefault()
+    dispatchData(handleUserPost(userData))
+    dispatch({ type: "RESET" })
+    
+  }
+
+   const handleLogin = (e) =>{
+    e.preventDefault()
+    localStorage.setItem("userLogin",JSON.stringify(userDataLogin))
+    dispatchData(handleUserLogin(userDataLogin))
+    dispatch({ type: "RESETX" })
+    
+   }
 
   const togglePassword = () => {
     setTypePass((prev) => !prev);
@@ -193,7 +215,10 @@ const Navbar = () => {
     locationFn().then((res) => {
       setLocation(JSON.parse(localStorage.getItem("location")));
     });
-  }, []);
+    let data = JSON.parse(localStorage.getItem("userLogin"))
+    dispatchData(handleUserLogin(data))
+
+  }, [dispatchData]);
 
   // console.log(location)
 
@@ -206,7 +231,7 @@ const Navbar = () => {
 
         <Box className="searchContainer">
           <Box className="searchBox">
-            SEARCH &nbsp; |{" "}
+            SEARCH &nbsp; |
             <input
               type="text"
               placeholder={`Search here for products in ${location.city}`}
@@ -219,7 +244,7 @@ const Navbar = () => {
         </Box>
 
         <Box className="authUser">
-          {!userName && (
+          {!isAuth && (
             <>
               <FaUser /> &nbsp;
               <span onClick={modal1.onOpen}>Sign In / Register</span>
@@ -518,7 +543,7 @@ const Navbar = () => {
             </>
           )}
 
-          {userName &&
+          {isAuth &&
             <>
               <Menu>
 
@@ -599,7 +624,7 @@ const Navbar = () => {
         </Box>
         <Box className="smallScreenNavbar">
           <Box className="authUser">
-            {!userName && (
+            {!isAuth && (
               <>
                 <FaUser onClick={modal1.onOpen}/> &nbsp;
                 {/* <span >Sign In / Register</span> */}
@@ -898,7 +923,7 @@ const Navbar = () => {
               </>
             )}
 
-            {userName &&
+            {isAuth &&
               <>
                 <Menu>
 
