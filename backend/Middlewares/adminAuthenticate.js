@@ -1,5 +1,5 @@
 const adminAuthenticate=(req,res,next)=>{
-    const {role}=req.query
+    const {role,pass}=req.query
     if(role=="admin"&&pass==8765){
     next()
     }else{
