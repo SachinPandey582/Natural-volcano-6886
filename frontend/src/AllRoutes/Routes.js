@@ -4,6 +4,7 @@ import AdminPage from '../pages/AdminPage'
 import AdminPage1 from '../pages/AdminPage1'
 import AdminPage2 from '../pages/Adminpage2'
 import AdminPage3 from '../pages/AdminPage3'
+import CartPage from '../Pages/CartPage'
 import HomePage from '../pages/HomePage'
 // import AdminLandingPage from '../pages/Check'
 const AllRoutes = () => {
@@ -15,6 +16,7 @@ const AllRoutes = () => {
 <Route path='/admin/addtheproduct' element={<AdminPage1/>}></Route>
 <Route path='/admin/checktheusers' element={<AdminPage2/>}></Route>
 <Route path='/admin/seeallthecollections' element={<AdminPage3/>}></Route>
+<Route path='/cart' element={<CartPage/>}></Route>
       </Routes>
     </div>
   );
