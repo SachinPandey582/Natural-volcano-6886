@@ -48,7 +48,8 @@ const makePay=()=>{
   return (
     <>
       
-      <Box style={{ margin: "auto", marginTop: 20, textAlign: "center", width: "90%" }}><Heading style={{ fontSize: 20 }}>Total Items :</Heading></Box>
+      <Box style={{ margin: "auto", marginTop: 20, textAlign: "center", width: "90%" }}>
+        <Heading style={{ fontSize: 20 }}>Total Items :{cart.length}</Heading></Box>
       <Flex style={{
 
         justifyContent: "space-around",
