@@ -91,7 +91,7 @@ const Navbar = () => {
 
 
   
-  const toast = useToast();
+  // const toast = useToast();
   const dispatchData = useDispatch()
   const isAuth = useSelector((store) => store.authState.isAuth)
   const authData = useSelector((store) => store.authState.authData)
