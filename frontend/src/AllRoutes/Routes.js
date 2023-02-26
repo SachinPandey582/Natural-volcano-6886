@@ -1,11 +1,11 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import AdminPage from "../pages/AdminPage";
-import AdminPage1 from "../pages/AdminPage1";
-import AdminPage2 from "../pages/Adminpage2";
-import AdminPage3 from "../pages/AdminPage3";
+import AdminPage from "../Pages/AdminPage";
+import AdminPage1 from "../Pages/AdminPage1";
+import AdminPage2 from "../Pages/Adminpage2";
+import AdminPage3 from "../Pages/AdminPage3";
 import CartPage from "../Pages/CartPage";
-import HomePage from "../pages/HomePage";
+import HomePage from "../Pages/HomePage";
 import SingleProductPage from "../Pages/SingleProductPage";
 // import AdminLandingPage from '../pages/Check'
 const AllRoutes = () => {
