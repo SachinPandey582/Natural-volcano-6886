@@ -191,6 +191,8 @@ const Navbar = () => {
     localStorage.removeItem("userLogin")
     // localStorage.setItem("userLogin",JSON.stringify())
     localStorage.removeItem("registeredData")
+
+    localStorage.removeItem("token")
     // localStorage.setItem("registeredData",JSON.stringify())
     dispatchData(userLogout())
     
@@ -545,7 +547,7 @@ const Navbar = () => {
 
 
                 <MenuButton>
-                  <span>{authData?.name || "User"}</span>
+                  <span>{authData?.name || <FaUser color="green" />}</span>
                 </MenuButton>
                 <MenuList>
                   <MenuItem style={{ color: "#902735", fontFamily: "Poppins", textDecorationLine: "underline", textUnderlineOffset: "2px" }}> My Account</MenuItem>
