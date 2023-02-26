@@ -83,7 +83,7 @@ const AdminPage = () => {
           <div>Todays Order</div>
         </div>
         <div className={ADcss.Sidebarsecondsection}>
-          <div>Collections</div>
+        <div onClick={()=>navigate("/admin/seeallthecollections")}>Collections</div>
         </div>
         <div className={ADcss.logoutcombo}>
           {" "}

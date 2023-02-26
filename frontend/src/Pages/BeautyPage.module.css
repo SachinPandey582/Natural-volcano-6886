@@ -1,0 +1,17 @@
+.mainContainer{
+    display: grid;
+    grid-template-columns: 20% 80%;
+}
+
+
+.RightContainer{
+    display: grid;
+grid-template-columns: repeat(3,1fr);
+
+}
+/* .RightContainer div{
+border: ;
+} */
+.LeftContainer{
+    padding-left: 20%;
+}

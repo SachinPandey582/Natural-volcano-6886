@@ -4,6 +4,7 @@ import AdminPage from "../Pages/AdminPage";
 import AdminPage1 from "../Pages/AdminPage1";
 import AdminPage2 from "../Pages/Adminpage2";
 import AdminPage3 from "../Pages/AdminPage3";
+import Beauty from "../Pages/BeautyPage";
 import CartPage from "../Pages/CartPage";
 import HomePage from "../Pages/HomePage";
 import SingleProductPage from "../Pages/SingleProductPage";
@@ -20,6 +21,8 @@ const AllRoutes = () => {
           path="/admin/seeallthecollections"
           element={<AdminPage3 />}
         ></Route>
+        
+        <Route path="/products" element={<Beauty />}></Route>
         <Route path="/cart" element={<CartPage />}></Route>
         <Route path="/product/:id" element={<SingleProductPage/>} />
       </Routes>

@@ -7,7 +7,7 @@ import axios from "axios";
 import { Button, Center, Grid, Heading, Input, list } from "@chakra-ui/react";
 import AD1css from "./AdminPage.module.css";
 import { useNavigate } from "react-router-dom";
-import ProductForm from "./AddTheData";
+import ProductForm from "../components/AdminThings/AddTheData";
 // import UsersData from '../components/AdminThings/FetchusersCard'
 
 const AdminPage1 = () => {
@@ -63,7 +63,7 @@ const navigate=useNavigate()
           <div>Todays Order</div>
         </div>
         <div className={ADcss.Sidebarsecondsection}>
-          <div>Collections</div>
+        <div onClick={()=>navigate("/admin/seeallthecollections")}>Collections</div>
         </div>
         <div className={ADcss.logoutcombo}>
           {" "}
