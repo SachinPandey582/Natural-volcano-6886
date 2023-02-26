@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { Flex, Heading, Box, Button, Text } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import { allCartData } from "../Redux/Cart/CartAction";
+import { allCartData, updateCartTotalPrice } from "../Redux/Cart/CartAction";
 import { store } from "../Redux/store";
 import { PhoneIcon, AddIcon, WarningIcon, StarIcon } from '@chakra-ui/icons'
 import CartProduct from "../components/CartProduct";
@@ -37,13 +37,32 @@ const nav=useNavigate()
       dispatch(allCartData(res));
     
   };
+const makePay=()=>{
+  dispatch(updateCartTotalPrice(total))
+  nav("/payment")
 
+}
   React.useEffect(() => {
     getData();
   }, []);
   return (
     <>
-      <Flex
+      
+      <Box style={{ margin: "auto", marginTop: 20, textAlign: "center", width: "90%" }}><Heading style={{ fontSize: 20 }}>Total Items :</Heading></Box>
+      <Flex style={{
+
+        justifyContent: "space-around",
+        width: "90%",
+        margin: "auto",
+        alignItems: "center",
+        marginTop: 30, fontWeight: "bold", fontSize: 18, boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px", padding: 20, borderRadius: 20
+      }}>
+        <Text>Item Details</Text>
+        <Text marginLeft={"20%"}>Quantity </Text>
+        <Text>₹ Price {"->"}</Text>
+      </Flex>
+{cart&&cart.map((el)=><CartProduct key={el._id} {...el} />)}
+<Flex
       padding={5}
       borderRadius={20}
       boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px;"}
@@ -62,7 +81,9 @@ const nav=useNavigate()
         </Flex>
         <Flex style={{ width: "50%" }}>
           <Text style={{ marginTop: 10 }}>Subtotal : ₹ {total} </Text>
-          <Button style={{
+          <Button 
+          onClick={()=>makePay()}
+          style={{
             justifyContent: "space-around",
 
             margin: "auto",
@@ -72,21 +93,6 @@ const nav=useNavigate()
           </Button>
         </Flex>
       </Flex>
-      <Box style={{ margin: "auto", marginTop: 20, textAlign: "center", width: "90%" }}><Heading style={{ fontSize: 20 }}>Total Items :</Heading></Box>
-      <Flex style={{
-
-        justifyContent: "space-around",
-        width: "90%",
-        margin: "auto",
-        alignItems: "center",
-        marginTop: 30, fontWeight: "bold", fontSize: 18, boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px", padding: 20, borderRadius: 20
-      }}>
-        <Text>Item Details</Text>
-        <Text marginLeft={"20%"}>Quantity </Text>
-        <Text>₹ Price {"->"}</Text>
-      </Flex>
-{cart&&cart.map((el)=><CartProduct key={el._id} {...el} />)}
-     
     </>
   );
 };

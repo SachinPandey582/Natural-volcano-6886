@@ -13,7 +13,7 @@ import {
 import { useNavigate } from 'react-router'
 
 export const ProductCard = ({img,title,price,_id}) => {
-    const [cart,setCart]=useState("Add To Cart")
+    const [cart,setCart]=useState("Show More")
     const navigate = useNavigate()
   return (
     <div>
@@ -30,7 +30,7 @@ export const ProductCard = ({img,title,price,_id}) => {
                       <Text color='#fba937' fontSize='2xl'>
                           ₹{price}
                       </Text>
-                      <Button onClick={() => setCart("Added To Cart")} bg="#902735" color="white" >
+                      <Button onClick={() => setCart("View ")} bg="#902735" color="white" >
                           {cart}
                       </Button>
                   </Stack>

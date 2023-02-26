@@ -33,7 +33,7 @@ export default function SignupCard() {
       quantity,
       category,
     };
-    fetch(`http://localhost:8080/products`, {
+    fetch(process.env.api_url`/products`, {
       method: "POST",
       body: JSON.stringify(payload),
       headers: {

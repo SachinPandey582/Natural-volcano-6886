@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom'
 import ProductDescription from '../components/ProductDescription'
 import { useDispatch } from 'react-redux'
 import { addItemToCart } from '../Redux/Cart/CartAction'
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 const SingleProductPage = () => {
     const [product,setProduct]=React.useState({})
     const { id } = useParams()
@@ -21,7 +23,19 @@ const SingleProductPage = () => {
             console.log("error ", error);    
         }
     }
+       const notify = () => toast.success('🦄 The Product Added Successfully', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        });;
+
     const addToCart=async()=>{
+     notify()
        product.des=Math.random()*342434892398342
        const {title,category,img,price,quantity}=product
        let obj={title,category,img,price,quantity}

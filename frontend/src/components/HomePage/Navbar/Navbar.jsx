@@ -35,7 +35,8 @@ import { AiFillEye } from "react-icons/ai";
 import { AiFillEyeInvisible } from "react-icons/ai";
 import { TbSearch } from "react-icons/tb";
 import "./Navbar.css";
-
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 // import axios from "axios";
 // import { postUserData } from "../../../Redux/Auth/auth.api";
 import { handleUserLogin, handleUserPost, userLogout } from "../../../Redux/Auth/auth.action";
@@ -67,6 +68,7 @@ const reducer = (state, action) => {
   }
 };
 
+
 const reducerLogin = (statex, actionx) => {
   switch (actionx.type) {
     case "EMAILX":
@@ -81,6 +83,36 @@ const reducerLogin = (statex, actionx) => {
 };
 
 const Navbar = () => {
+  const notify = () => toast.success('The user Logged in SuccessFully', {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+    });;
+  const notifyssignup = () => toast.success('The user Signed up  SuccessFully', {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+    });;
+  const notifylogout = () => toast.error('The user Logged out SuccessFully', {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+    });;
   const [location, setLocation] = useState({});
   const [register, setRegister] = useState(true);
   // const [userName, setUserName] = useState(false);
@@ -103,6 +135,7 @@ const Navbar = () => {
 
   const handleLoginSignin = () => {
     setRegister((prev) => !prev);
+    notify()
   };
 
 
@@ -113,7 +146,7 @@ const Navbar = () => {
     dispatchData(handleUserPost(userData))
     dispatch({ type: "RESET" })
     
-
+    notifyssignup()
   }
   
   // if(isAuth && isAuthSignup){
@@ -149,7 +182,7 @@ const nav=useNavigate()
     localStorage.setItem("userLogin", JSON.stringify(userDataLogin))
     dispatchData(handleUserLogin(userDataLogin))
     dispatch({ type: "RESETX" })
-
+    notify()
     
   }
 
@@ -196,8 +229,18 @@ const nav=useNavigate()
     localStorage.removeItem("token")
     // localStorage.setItem("registeredData",JSON.stringify())
     dispatchData(userLogout())
-    
+    notifylogout()
   }
+
+  const [SearchedData,setSearchedData]=useState("")
+
+const getTheSearchItem=async(value)=>{
+  setSearchedData(value)
+  let data = await fetch(`http://localhost:8080/products?search=${SearchedData}`)
+  let res=await data.json()
+  console.log(res)
+}
+
 
   useEffect(() => {
     locationFn().then((res) => {
@@ -232,7 +275,8 @@ const nav=useNavigate()
           <Box className="searchBox">
             SEARCH &nbsp; |
             <input
-              type="text"
+onChange={(e)=>getTheSearchItem(e.target.value)}
+type="text"
               placeholder={`Search here for products in ${location.city}`}
             />
           </Box>
@@ -551,7 +595,7 @@ const nav=useNavigate()
                   <span>{authData?.name || <FaUser color="green" />}</span>
                 </MenuButton>
                 <MenuList>
-                  <MenuItem style={{ color: "#902735", fontFamily: "Poppins", textDecorationLine: "underline", textUnderlineOffset: "2px" }}> My Account</MenuItem>
+                  <MenuItem style={{ color: "#902735", fontFamily: "Poppins", textDecorationLine: "underline", textUnderlineOffset: "2px" }} onClick={()=>nav("/admin")}> Admin</MenuItem>
                   <MenuItem style={{ color: "#902735", fontFamily: "Poppins", textDecorationLine: "underline", textUnderlineOffset: "2px" }}> My Orders</MenuItem>
                   <MenuItem style={{ color: "#902735", fontFamily: "Poppins", textDecorationLine: "underline", textUnderlineOffset: "2px" }}> My Wishlist</MenuItem>
                   <MenuItem style={{ color: "#902735", fontFamily: "Poppins", textDecorationLine: "underline", textUnderlineOffset: "2px" }}> My Address</MenuItem>
@@ -571,9 +615,9 @@ const nav=useNavigate()
           <BsSuitHeartFill /> &nbsp; Wishlist
         </Box>
 
-        <Box onClick={()=>nav("/cart")} className="cart">
+        { isAuth ? <Box onClick={()=>nav("/cart")} className="cart">
           <FaShoppingCart /> &nbsp; Cart
-        </Box>
+        </Box> : null}
       </Box>
 
       <Box className="navbarContainerSmall">
@@ -933,7 +977,7 @@ const nav=useNavigate()
                   </MenuButton>
                   <MenuList>
                 
-                    <MenuItem style={{ color: "#902735", fontFamily: "Poppins", textDecorationLine: "underline", textUnderlineOffset: "2px" }}> My Account</MenuItem>
+                    <MenuItem style={{ color: "#902735", fontFamily: "Poppins", textDecorationLine: "underline", textUnderlineOffset: "2px" }} onClick={()=>nav("/admin")}> Admin</MenuItem>
                     <MenuItem style={{ color: "#902735", fontFamily: "Poppins", textDecorationLine: "underline", textUnderlineOffset: "2px" }}> My Orders</MenuItem>
                     <MenuItem style={{ color: "#902735", fontFamily: "Poppins", textDecorationLine: "underline", textUnderlineOffset: "2px" }}> My Wishlist</MenuItem>
                     <MenuItem style={{ color: "#902735", fontFamily: "Poppins", textDecorationLine: "underline", textUnderlineOffset: "2px" }}> My Address</MenuItem>

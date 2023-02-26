@@ -4,10 +4,20 @@ import React, { useEffect, useState } from "react";
 import { ProductCard } from "../components/AllProducts/BeautyCard";
 import FilterSidebar from "../components/AllProducts/FilterProducts";
 import BPCss from "./BeautyPage.module.css";
-
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 const Beauty = () => {
   const [totalData, setTotalData] = useState([]);
-
+  const notify=()=>toast.success('you have successfully filterd', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+    });
   const [priceFilters, setPriceFilters] = useState({
     under500: false,
     between500and1000: false,
@@ -99,19 +109,26 @@ const Beauty = () => {
     console.log(categoryFilters);
     if (categoryFilters.Beauty) {
       getData1();
+      notify()
     } else if (categoryFilters.Fashion) {
       getData2();
+      notify()
     } else if (categoryFilters.Home) {
       getData3();
+      notify()
     } else if (priceFilters.under500) {
       getData4(3000);
+      notify()
     } else if (priceFilters.between500and1000) {
       getData5(3000, 5000);
+      notify()
     } else if (priceFilters.between1000and2000) {
       getData6(5000);
+      notify()
     } else {
       getData();
     }
+  
   }, [categoryFilters, priceFilters, page]);
   return (
     <>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const NumberGraph = (payload) => {
     const {num1,num2,num3}=payload
-  const [numbers, setNumbers] = useState([num1,num2,num3,num1,num2]);
+  const [numbers, setNumbers] = useState([num1,num2,num3,20,39,45,67,87,90,34]);
   const maxNumber = Math.max(...numbers); // Get the maximum number to use as the scale
   const barHeight = 400; // Set the height of each bar
   const barWidth = 80; // Set the width of each bar

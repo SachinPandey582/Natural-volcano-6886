@@ -1,4 +1,4 @@
-import { GET_ALL_CART,ADD_ITEM_TO_CART, DELETE_CART_ITEM, UPDATE_CART_ITEM } from "./CartActionType"
+import { GET_ALL_CART,ADD_ITEM_TO_CART, DELETE_CART_ITEM, UPDATE_CART_ITEM, TOTAL_PRICE } from "./CartActionType"
 
 
 export const allCartData=(data)=>(dispatch)=>{
@@ -12,4 +12,7 @@ export const deleteItemFromCart=(id)=>(dispatch)=>{
 }
 export const updateItemFromCart=(data)=>(dispatch)=>{
     dispatch({type:UPDATE_CART_ITEM,payload:data})
+}
+export const updateCartTotalPrice=(data)=>(dispatch)=>{
+    dispatch({type:TOTAL_PRICE,payload:data})
 }

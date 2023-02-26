@@ -3,12 +3,38 @@ import { Box, Button, Flex, Image, SimpleGrid, Text } from '@chakra-ui/react'
 import React from 'react'
 import { useDispatch, useSelector} from 'react-redux'
 import { deleteItemFromCart, updateItemFromCart } from '../Redux/Cart/CartAction'
-
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 const CartProduct = ({price,title,quantity,_id,img}) => {
+  const notify = () => toast.success(' The Product Updated Successfully', {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+    });;
 
+
+
+
+
+    const notifyerror = () => toast.error(' The Product Deleted Successfully', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      });;
   const dispatch=useDispatch()
 
   const increaseQuantity=async(_id)=>{
+
   console.log(_id)
   dispatch(updateItemFromCart({_id:_id,quantity:quantity+1}))
   let data=await fetch(`http://localhost:8080/cart/${_id}`,{
@@ -18,6 +44,7 @@ const CartProduct = ({price,title,quantity,_id,img}) => {
   })
   let res=await data.json()
   console.log(res)
+  notify()
   }
   const decreaseQuantity=async(_id)=>{
     console.log(_id)
@@ -29,6 +56,7 @@ const CartProduct = ({price,title,quantity,_id,img}) => {
   })
   let res=await data.json()
   console.log(res)
+  notify()
     }
 
     const deleteProduct=async(_id)=>{
@@ -40,6 +68,7 @@ const CartProduct = ({price,title,quantity,_id,img}) => {
       })
       let res=await data.json()
       console.log(res)
+      notifyerror()
     }
   return (
     <>

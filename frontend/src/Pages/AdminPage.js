@@ -131,9 +131,7 @@ const AdminPage = () => {
 <NumberGraph num1={data1.length} num2={data2.length} num3={data3.length}/> 
 
 </div>
-<div>
-    here is the graph of the products 
-</div>
+
 </div>
 
         <br />

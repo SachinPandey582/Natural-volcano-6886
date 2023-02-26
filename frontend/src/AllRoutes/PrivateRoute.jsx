@@ -11,6 +11,7 @@ const PrivateRoute = ({ children }) => {
 
     let decode = jwt_decode(token)
     if (decode.user.role === "user") {
+        
         return <Navigate to="/" />
     }
 

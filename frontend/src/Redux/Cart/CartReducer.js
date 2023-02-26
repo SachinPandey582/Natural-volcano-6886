@@ -1,8 +1,9 @@
-import { ADD_ITEM_TO_CART, DELETE_CART_ITEM, GET_ALL_CART, UPDATE_CART_ITEM } from "./CartActionType"
+import { ADD_ITEM_TO_CART, DELETE_CART_ITEM, GET_ALL_CART, TOTAL_PRICE, UPDATE_CART_ITEM } from "./CartActionType"
 
 
 const initialState={
     cart:[],
+    totalPrice:0
 
 }
 export const cartReducer=(state=initialState,action)=>{
@@ -37,6 +38,12 @@ export const cartReducer=(state=initialState,action)=>{
             return {
                 ...state,
                 cart:action.payload
+            }
+        }
+        case TOTAL_PRICE:{
+            return {
+                ...state,
+                totalPrice:action.payload
             }
         }
         default:{
