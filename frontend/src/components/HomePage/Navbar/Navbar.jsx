@@ -23,10 +23,10 @@ import Logo from "../../../assets/SpritsVilla.png";
 import locationFn from "../../../location/location";
 import { useToast } from "@chakra-ui/react";
 import { MdLocationOn } from "react-icons/md";
-import {useDispatch, useSelector} from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { FaUser } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
-import { BsSuitHeartFill } from "react-icons/bs";
+import { BsSuitHeartFill, BsXLg } from "react-icons/bs";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { SlSocialDropbox } from "react-icons/sl";
 import { BsCartCheckFill } from "react-icons/bs";
@@ -38,7 +38,7 @@ import "./Navbar.css";
 
 // import axios from "axios";
 // import { postUserData } from "../../../Redux/Auth/auth.api";
-import { handleUserLogin, handleUserPost } from "../../../Redux/Auth/auth.action";
+import { handleUserLogin, handleUserPost, userLogout } from "../../../Redux/Auth/auth.action";
 
 const initialUserData = {
   name: "",
@@ -88,12 +88,16 @@ const Navbar = () => {
   const [eyeIcon, setEyeIcon] = useState(true);
   const [userData, dispatch] = useReducer(reducer, initialUserData);
   const [userDataLogin, dispatchx] = useReducer(reducerLogin, initialLoginUser);
+
+
+  
   const toast = useToast();
   const dispatchData = useDispatch()
-  const isAuth = useSelector((store)=>store.authState.isAuth)
-  const authData = useSelector((store)=>store.authState.authData)
-  console.log(authData)
-  console.log(isAuth)
+  const isAuth = useSelector((store) => store.authState.isAuth)
+  const authData = useSelector((store) => store.authState.authData)
+  // const isAuthLogin = useSelector((store)=> store.authState.isAuthLogin)
+  // const isAuthSignup = useSelector((store)=> store.authState.isAuthSignup)
+  
   const modal1 = useDisclosure();
   const modal2 = useDisclosure();
 
@@ -101,63 +105,56 @@ const Navbar = () => {
     setRegister((prev) => !prev);
   };
 
-  // const handleRegister = (e) => {
-  //   e.preventDefault();
-  //   dispatch({ type: "RESET" });
-  //   // console.log(userData)
 
-  //   axios
-  //     .post("http://localhost:8080/user/signup", userData)
-  //     .then((res) => {
-  //       console.log(res);
-  //       localStorage.setItem("token", res.data.token);
 
-  //       if (
-  //         res.data.msg ===
-  //         "User Already Exist Please Login in Your Existing Account"
-  //       ) {
-  //         toast({
-  //           description: "user already registered, please login..!",
-  //           status: "error",
-  //           isClosable: true,
-  //           variant: "top-accent",
-  //           duration: 5000,
-  //           position: "top",
-  //         });
-  //       } else {
-  //         toast({
-  //           description: "user registerd succesfully..😊",
-  //           status: "success",
-  //           isClosable: true,
-  //           variant: "top-accent",
-  //           duration: 5000,
-  //           position: "top",
-  //         });
-  //       }
-  //     })
-  //     .catch((erx) => {
-  //       console.log("erx is", erx);
+  const handleRegister = (e) => {
+    e.preventDefault()
+    localStorage.setItem("registeredData", JSON.stringify(userData))
+    dispatchData(handleUserPost(userData))
+    dispatch({ type: "RESET" })
+    
+
+  }
+  
+  // if(isAuth && isAuthSignup){
+  //   // console.log(authData)
+  //   if (authData.msg == 'User Registered Succesfully') {
+  //     toast({
+  //       description: "user registerd succesfully..😊",
+  //       status: "success",
+  //       isClosable: true,
+  //       variant: "top-accent",
+  //       duration: 5000,
+  //       position: "top",
   //     });
-  // };
+  //     // setClick((prev)=>!prev)
+  //   }
+  //   else {
+  //     toast({
+  //       description: "user already registered, please login..!",
+  //       status: "error",
+  //       isClosable: true,
+  //       variant: "top-accent",
+  //       duration: 5000,
+  //       position: "top",
+  //     });
+  //     // setClick((prev)=>!prev)
+  //   }
+  // }
 
-  // const handleLogin = async (e) => {
-  //   e.preventDefault();
-  //   dispatchx({ type: "RESETX" });
-  //   // console.log(userDataLogin);
 
 
-  //   let user = await fetch("http://localhost:8080/user/login", {
-  //     method: "POST",
-  //     headers: {
-  //       "content-type": "Application/json",
-  //       Authorization: localStorage.getItem("token"),
-  //     },
-  //     body: JSON.stringify(userDataLogin),
-  //   });
+  const handleLogin = (e) => {
+    e.preventDefault()
+    localStorage.setItem("userLogin", JSON.stringify(userDataLogin))
+    dispatchData(handleUserLogin(userDataLogin))
+    dispatch({ type: "RESETX" })
 
-  //   let res = await user.json();
-  //   console.log(res);
-  //   if (res.msg === "Account Not Exist") {
+    
+  }
+
+  // if(isAuth && isAuthLogin){
+  //   if ( authData.msg === "Account Not Exist") {
   //     toast({
   //       description: "Entered data is not correct, Please check once again..!",
   //       status: "warning",
@@ -167,60 +164,59 @@ const Navbar = () => {
   //       position: "top",
   //     })
   //   }
-  //   else if (res.msg === "Welcome Back nora fatehi") {
+  //   else {
   //     toast({
-  //       description: `Namastey 🙏, Nora`,
+  //       description: `Namastey 🙏${authData.name} `,
   //       status: "success",
   //       variant: "subtle",
   //       isClosable: true,
   //       duration: 5000,
   //       position: "top",
   //     })
-  //     setUserName((prev) => !prev)
+  
   //   }
-  //   else {
-  //     toast({
-  //       description: `Something went wrong, Please check in sometime..!`,
-  //       status: "error",
-  //       isClosable: true,
-  //       variant: "top-accent",
-  //       duration: 5000,
-  //       position: "top",
-  //     })
-  //   }
+  // }
 
-  // };
 
-  const handleRegister =(e) =>{
-    e.preventDefault()
-    dispatchData(handleUserPost(userData))
-    dispatch({ type: "RESET" })
-    
-  }
 
-   const handleLogin = (e) =>{
-    e.preventDefault()
-    localStorage.setItem("userLogin",JSON.stringify(userDataLogin))
-    dispatchData(handleUserLogin(userDataLogin))
-    dispatch({ type: "RESETX" })
-    
-   }
+
 
   const togglePassword = () => {
     setTypePass((prev) => !prev);
     setEyeIcon((prev) => !prev);
   };
 
+  const handleLogout = () => {
+    // console.log("aman")
+    localStorage.removeItem("userLogin")
+    // localStorage.setItem("userLogin",JSON.stringify())
+    localStorage.removeItem("registeredData")
+    // localStorage.setItem("registeredData",JSON.stringify())
+    dispatchData(userLogout())
+    
+  }
+
   useEffect(() => {
     locationFn().then((res) => {
       setLocation(JSON.parse(localStorage.getItem("location")));
     });
-    let data = JSON.parse(localStorage.getItem("userLogin"))
-    dispatchData(handleUserLogin(data))
+    let data = JSON.parse(localStorage.getItem("userLogin")) || {email:"", password:""}
 
+    if(data.email!==""){
+      let data = JSON.parse(localStorage.getItem("userLogin")) || {email:"", password:""}
+      dispatchData(handleUserLogin(data))
+    }
+
+
+    let registerdData = JSON.parse(localStorage.getItem("registeredData")) || {name:"", email:"", password:"", role:""}
+    if(registerdData.email!==""){
+      let registerdData = JSON.parse(localStorage.getItem("registeredData")) 
+      dispatchData(handleUserPost(registerdData))
+    }
   }, [dispatchData]);
 
-  // console.log(location)
+  console.log("hii mana")
+  console.log(authData)
 
   return (
     <>
@@ -549,7 +545,7 @@ const Navbar = () => {
 
 
                 <MenuButton>
-                  <span>Nora Fatehi</span>
+                  <span>{authData?.name || "User"}</span>
                 </MenuButton>
                 <MenuList>
                   <MenuItem style={{ color: "#902735", fontFamily: "Poppins", textDecorationLine: "underline", textUnderlineOffset: "2px" }}> My Account</MenuItem>
@@ -560,7 +556,7 @@ const Navbar = () => {
                   <MenuItem style={{ color: "#902735", fontFamily: "Poppins", textDecorationLine: "underline", textUnderlineOffset: "2px" }}> Wallet</MenuItem>
                   <MenuItem style={{ color: "#902735", fontFamily: "Poppins", textDecorationLine: "underline", textUnderlineOffset: "2px" }}> My Shared Products</MenuItem>
                   <MenuItem style={{ color: "#902735", fontFamily: "Poppins", textDecorationLine: "underline", textUnderlineOffset: "2px" }}> Raise Ticket</MenuItem>
-                  <MenuItem style={{ color: "#902735", fontFamily: "Poppins", textDecorationLine: "underline", textUnderlineOffset: "2px" }}> Logout</MenuItem>
+                  <MenuItem onClick={handleLogout} style={{ color: "#902735", fontFamily: "Poppins", textDecorationLine: "underline", textUnderlineOffset: "2px" }}> Logout</MenuItem>
                 </MenuList>
               </Menu>
 
@@ -626,7 +622,7 @@ const Navbar = () => {
           <Box className="authUser">
             {!isAuth && (
               <>
-                <FaUser onClick={modal1.onOpen}/> &nbsp;
+                <FaUser onClick={modal1.onOpen} /> &nbsp;
                 {/* <span >Sign In / Register</span> */}
                 <Modal isOpen={modal1.isOpen} onClose={modal1.onClose}>
                   <ModalOverlay />
@@ -929,7 +925,7 @@ const Navbar = () => {
 
 
                   <MenuButton>
-                    <FaUser color="green"/>
+                    <FaUser color="green" />
                     {/* <span>Nora Fatehi</span> */}
                   </MenuButton>
                   <MenuList>
@@ -941,7 +937,7 @@ const Navbar = () => {
                     <MenuItem style={{ color: "#902735", fontFamily: "Poppins", textDecorationLine: "underline", textUnderlineOffset: "2px" }}> Wallet</MenuItem>
                     <MenuItem style={{ color: "#902735", fontFamily: "Poppins", textDecorationLine: "underline", textUnderlineOffset: "2px" }}> My Shared Products</MenuItem>
                     <MenuItem style={{ color: "#902735", fontFamily: "Poppins", textDecorationLine: "underline", textUnderlineOffset: "2px" }}> Raise Ticket</MenuItem>
-                    <MenuItem style={{ color: "#902735", fontFamily: "Poppins", textDecorationLine: "underline", textUnderlineOffset: "2px" }}> Logout</MenuItem>
+                    <MenuItem onClick={handleLogout} style={{ color: "#902735", fontFamily: "Poppins", textDecorationLine: "underline", textUnderlineOffset: "2px" }}> Logout</MenuItem>
                   </MenuList>
                 </Menu>
 
