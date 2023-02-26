@@ -31,6 +31,7 @@
     "react-toastify": "^9.1.1",
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
+    "vercel": "^28.16.7",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
