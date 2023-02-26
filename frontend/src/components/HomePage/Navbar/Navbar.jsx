@@ -21,7 +21,7 @@ import {
 import React, { useEffect, useReducer, useState } from "react";
 import Logo from "../../../assets/SpritsVilla.png";
 import locationFn from "../../../location/location";
-import { useToast } from "@chakra-ui/react";
+// import { useToast } from "@chakra-ui/react";
 import { MdLocationOn } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux"
 import { FaUser } from "react-icons/fa";
