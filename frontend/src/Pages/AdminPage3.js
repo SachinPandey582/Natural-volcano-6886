@@ -3,10 +3,19 @@ import React, { useEffect, useState } from 'react'
 import NavbarOfAdmin from '../components/AdminThings/Navbaradmin'
 import ADcss from "./AdminPage.module.css"
 import axios from "axios"
-import ProductAddToCart from '../components/AdminThings/ProductCard'
-import { Button, list } from '@chakra-ui/react'
+import { Button, Input,  Popover, PopoverArrow, PopoverBody, PopoverCloseButton, PopoverContent, PopoverHeader, PopoverTrigger } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
-
+import {
+    Table,
+    Thead,
+    Tbody,
+    Tr,
+    Th,
+    Td,
+    Image,    
+    Box,
+    Flex,
+  } from '@chakra-ui/react';
 
 
 
@@ -17,20 +26,43 @@ const AdminPage = () => {
     const [currpage, setcurrpage] = useState(1)
     //here i am setting the page of the data 
 
-    const [totalpage, settotalpage] = useState(0)
-    //here i am setting the total no of pages of the data 
-
-    const [searchTerm, setSearchTerm] = useState("")
-    //here this is going to use by me for search functionality
-
-    const [loading, setloading] = useState(false)
-    //here this is the loading part to solve the loading indicator here 
-    const [category, sercategory] = useState(0)
-    //here this is for the category of the data
+   
 
 const navigate=useNavigate()
+   const [counter,setcounter]=useState(0)
+
    
-    let count = 0
+
+    const [Newtitle,settitle]=useState("")
+
+     const [Newprice,setprice]=useState("")
+     const [Newimg,setimg]=useState("")
+     const [Newquantity,setquantity]=useState("")
+     const [Newcategory,setcategory]=useState("")
+    const EditTheData=(id)=>{
+        const datatochange={
+
+title:Newtitle,
+price:Newprice,
+img:Newimg,
+category:Newcategory,
+quantity:Newquantity, 
+
+        }
+        console.log("this is working the edit ",id)
+        fetch(`http://localhost:8080/products/${id}?role=admin&pass=8765`, { 
+        method: "PATCH",
+        headers: {
+            "Content-Type" : "application/json"
+          },
+        body: JSON.stringify(
+          datatochange
+        )
+      }).then(res=>res.json())
+      .then(res=>console.log(res))
+      .catch(err=>console.log(err))
+
+    }
     const Hightolow = () => {
         const HightoLowData = data.sort((a, b) => {
             setcurrpage(currpage + 1)
@@ -55,6 +87,20 @@ const navigate=useNavigate()
         setdata(HomeCategoryData)
 
     }
+
+
+    const DeleteTheData=(id)=>{
+        console.log('this is working the delete',id)
+        //i am getting the id can you check there 
+        
+        fetch(`http://localhost:8080/products/${id}?role=admin&pass=8765`,{
+         method:"DELETE"
+        }).then(res=>res.json())
+        .then(res=>console.log(res))
+        .catch(err=>console.log(err))
+          setcounter(counter+1) 
+          alert("The Item has been deleted")
+     }
     const BeautyCategory = () => {
 
         let BeautyCategoryData = data.filter((el) => {
@@ -94,7 +140,7 @@ const AllTheCategory=async()=>{
 
         getData()
 
-    }, [])
+    }, [counter])
     return (
         <div className={ADcss.mainContainer}>
        
@@ -116,9 +162,9 @@ const AllTheCategory=async()=>{
                     </div>
                 </div>
                 <div className={ADcss.Sidebarsecondsection}>
-                    <div onClick={()=>navigate("/admin/addtheproduct")}>
-                        Edit the Products
-                    </div>
+                <div onClick={() => navigate("/admin/addtheproduct")}>
+            Add the Products
+          </div>
 
                 </div>
                 <div className={ADcss.Sidebarsecondsection}>
@@ -130,9 +176,7 @@ const AllTheCategory=async()=>{
                     </div>
 
                 </div><div className={ADcss.Sidebarsecondsection}>
-                    <div>
-                        Collections
-                    </div>
+                <div onClick={()=>navigate("/admin/seeallthecollections")}>Collections</div>
 
                 </div>
                 <div className={ADcss.logoutcombo}> <div>
@@ -160,22 +204,82 @@ const AllTheCategory=async()=>{
                 <br />
               
               
-                <div className={ADcss.productcards}>
-                    {
+                <div >
+                <Box overflowX="auto">
+      <Table variant="simple">
+        <Thead>
+          <Tr>
+            <Th>Image</Th>
+            <Th>Name</Th>
+            <Th>Price</Th>
+            <Th>ID</Th>
+            <Th>Actions</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          {data.map((item) => (
+            <Tr key={item.id}>
+              <Td>
+                <Image boxSize="50px" objectFit="cover" src={item.img} />
+              </Td>
+              <Td>{item.title}</Td>
+              <Td>{item.price}</Td>
+              <Td>{item._id}</Td>
+              <Td>
+                <Flex>
+                 
+                  <Popover>
+  <PopoverTrigger>
+  <Button >Edit</Button>
+  </PopoverTrigger>
+  <PopoverContent>
+    <PopoverArrow />
+    <PopoverCloseButton />
+    <PopoverHeader>Change the Details</PopoverHeader>
+    <PopoverBody>
+        <form style={{display:"block" ,margin:"auto"}} onSubmit={()=>EditTheData(item._id)}>
 
-                        data.map((el) => (
+        <Input  placeholder='Enter the title here ' value={Newtitle} onChange={(e)=>settitle(e.target.value)}/>
+        <br/>
+        <Input  placeholder='Enter the Price here ' value={Newprice} onChange={(e)=>setprice(e.target.value)}/>
+        <br/>
+        <Input placeholder='Enter the quantity here ' value={Newquantity} onChange={(e)=>setquantity(e.target.value)}/>
+        <br/>
+        <Input  placeholder='Enter the category here ' value={Newcategory} onChange={(e)=>setcategory(e.target.value)}/>
+        <br/>
+        <Input  placeholder='Enter the img here ' value={Newimg} onChange={(e)=>setimg(e.target.value)}/>
+        <br/>
+       
+       
 
-                             <ProductAddToCart    id={el._id}  imageURL={el.img} name={el.title} price={el.price} />
-                        )
-                        )
-                    }
+        <PopoverTrigger>
+        <Input type="Submit"  />
+  </PopoverTrigger>
+
+
+     </form>
+        
+    </PopoverBody>
+  </PopoverContent>
+</Popover>
+                  <Button
+                    size="sm"
+                    onClick={() => DeleteTheData(item._id)}
+                    bgColor="red.500"
+                    _hover={{ bgColor: 'red.600' }}
+                  >
+                    Delete
+                  </Button>
+                </Flex>
+              </Td>
+            </Tr>
+          ))}
+        </Tbody>
+      </Table>
+    </Box>
                 </div>
-                <div>
-
-                </div>
-                <div></div>
-                <div></div>
-                <div></div>
+                
+                
             </div>
         </div>
     )

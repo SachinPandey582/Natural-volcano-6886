@@ -105,3 +105,69 @@
     margin: auto;
     width: fit-content;
 }
+.product_counter {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+    background-color: #FEEAE6;
+    border: 2px solid #FCA5A5;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  .product_counter1 {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+    background-color: #FEEAE6;
+    border: 2px solid #FCA5A5;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  }.product_counter2 {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+    background-color: #FEEAE6;
+    border: 2px solid #FCA5A5;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  }.product_counter3 {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+    background-color: #FEEAE6;
+    border: 2px solid #FCA5A5;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .count {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #d72323;
+    margin-bottom: 5px;
+  }
+  
+  .label {
+    font-size: 1.5rem;
+    color: #ba1a1a;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  /* In this component, we use a div with the class product-counter as a container for the product count. Inside this container, we have two spans: one with the class count to display the number and another with the class label to display the label "Products". The CSS for the container and the spans creates a cute, rounded box with a pinkish background and a border, and the font styling adds to the overall cuteness. Feel free to adjust the CSS to your liking! */
+  
+  
+  
+  
+  

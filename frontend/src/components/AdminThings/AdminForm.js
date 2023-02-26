@@ -19,6 +19,7 @@ import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 
 export default function SignupCard() {
   const [title, settitle] = useState("");
+  
 
   const [price, setprice] = useState("");
   const [img, setimg] = useState("");
