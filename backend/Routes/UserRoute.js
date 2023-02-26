@@ -38,11 +38,13 @@ UserRouter.post("/user/signup", async (req, res) => {
         if (error) res.send({ msg: "Something Went Wrong" });
         let newUser = new UserModel({ name, email, password: hash, role });
         await newUser.save();
-        const user = UserModel.find({ email });
-        console.log(user);
-
+        setTimeout(async()=>{
+          const user =await UserModel.find({ email });
+       
+        
         const token = jswt.sign({ user: user[0] }, "hanumat");
         res.send({ msg: "User Registered Succesfully", token: token,name,email });
+        },1000)
       });
     }
   } catch (error) {

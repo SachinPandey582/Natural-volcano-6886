@@ -8,9 +8,10 @@ const SingleProductPage = () => {
     const [product,setProduct]=React.useState({})
     const { id } = useParams()
     const dispatch=useDispatch()
-    
+    // // http://localhost:3000/product/63f8ab5ec5a8f7ce168d493a
 
     const getData=async()=>{
+    
         try {
             let data=await fetch(`http://localhost:8080/products/${id}`)
             let res=await data.json()
@@ -21,9 +22,11 @@ const SingleProductPage = () => {
         }
     }
     const addToCart=async()=>{
+       
         dispatch(addItemToCart(product))
+        console.log(localStorage.getItem("token"))
         try {
-            let data=await fetch(`http://localhost:8080/cart/`,{
+            let data=await fetch(`http://localhost:8080/cart`,{
                 method:"POST",
                 headers:{Authorization:localStorage.getItem("token"),"Content-Type":"application/json"},
                 body:JSON.stringify(product)

@@ -2,10 +2,12 @@ const jswt = require("jsonwebtoken");
 const userAuthentcate = (req, res, next) => {
   try {
     const token = req.headers.authorization;
-
-    if (token !== "") {
+    console.log(token)
+    if (token) {
       jswt.verify(token, "hanumat", async (error, decoded) => {
         if (decoded) {
+          console.log(decoded)
+          
           req.body.userId = decoded.user._id;
           console.log(decoded.user._id);
           next();

@@ -4,14 +4,15 @@ export const getUserData = async (userDataLogin) => {
   let user = await fetch("http://localhost:8080/user/login", {
     method: "POST",
     headers: {
-      "content-type": "Application/json",
-      Authorization: localStorage.getItem("token"),
+      "content-type": "Application/json"
+     
     },
     body: JSON.stringify(userDataLogin),
   });
 
   let res = await user.json();
   console.log(res);
+  localStorage.setItem('token',res.token)
   return res;
 };
 

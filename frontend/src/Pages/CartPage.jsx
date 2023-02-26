@@ -17,7 +17,12 @@ const CartPage = () => {
   const { cart } = useSelector((store) => store.cartManager);
 
   let total=0
-  cart.forEach(({price,quantity})=> total=total+price*quantity )
+  if(cart.length==0){
+    total=0
+  }else{
+    cart.forEach(({price,quantity})=> total=total+price*quantity )
+  }
+ 
 
   const getData = async () => {
     let data = await fetch(`http://localhost:8080/cart`, {
@@ -25,7 +30,7 @@ const CartPage = () => {
     });
     let res = await data.json();
 
-    
+    console.log(res)
       dispatch(allCartData(res));
    
   };

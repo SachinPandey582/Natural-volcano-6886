@@ -39,7 +39,7 @@ import "./Navbar.css";
 // import axios from "axios";
 // import { postUserData } from "../../../Redux/Auth/auth.api";
 import { handleUserLogin, handleUserPost, userLogout } from "../../../Redux/Auth/auth.action";
-
+import {useNavigate} from "react-router-dom"
 const initialUserData = {
   name: "",
   email: "",
@@ -142,7 +142,7 @@ const Navbar = () => {
   //   }
   // }
 
-
+const nav=useNavigate()
 
   const handleLogin = (e) => {
     e.preventDefault()
@@ -570,7 +570,7 @@ const Navbar = () => {
           <BsSuitHeartFill /> &nbsp; Wishlist
         </Box>
 
-        <Box className="cart">
+        <Box onClick={()=>nav("/cart")} className="cart">
           <FaShoppingCart /> &nbsp; Cart
         </Box>
       </Box>
@@ -931,6 +931,7 @@ const Navbar = () => {
                     {/* <span>Nora Fatehi</span> */}
                   </MenuButton>
                   <MenuList>
+                
                     <MenuItem style={{ color: "#902735", fontFamily: "Poppins", textDecorationLine: "underline", textUnderlineOffset: "2px" }}> My Account</MenuItem>
                     <MenuItem style={{ color: "#902735", fontFamily: "Poppins", textDecorationLine: "underline", textUnderlineOffset: "2px" }}> My Orders</MenuItem>
                     <MenuItem style={{ color: "#902735", fontFamily: "Poppins", textDecorationLine: "underline", textUnderlineOffset: "2px" }}> My Wishlist</MenuItem>
