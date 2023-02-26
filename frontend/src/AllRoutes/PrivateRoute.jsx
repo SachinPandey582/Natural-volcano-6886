@@ -1,24 +1,24 @@
 import React from 'react'
+import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
-const jswt=require("jsonwebtoken")
 
 const PrivateRoute = ({ children }) => {
 
     const nav = useNavigate()
 
     const token = localStorage.getItem("token")
-    jswt.verify(token, "hanumat", async (error, decoded) => {
-        if (decoded) {
-            if (decoded.user.role === "user") {
-                alert("Your are Not Authorized For The Role of The Admin")
-            } else {
-                return nav("/admin")
-            }
 
+   
+    if (token!=="1234") {
+        let decode=jwt_decode(token)
+        if(decode.user.role==="admin"){
+           return nav("/admin")
+        }else{
+          return nav("/")
         }
-        if (error) alert("Something went Wrong")
-
-    });
+    }
+       
+   
 
 
 
@@ -28,5 +28,6 @@ const PrivateRoute = ({ children }) => {
         </div>
     )
 }
+
 
 export default PrivateRoute
