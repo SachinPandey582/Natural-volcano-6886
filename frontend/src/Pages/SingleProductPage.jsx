@@ -22,14 +22,18 @@ const SingleProductPage = () => {
         }
     }
     const addToCart=async()=>{
-       
+       product.des=Math.random()*342434892398342
+       const {title,category,img,price,quantity}=product
+       let obj={title,category,img,price,quantity}
+       console.log(obj)
+       console.log(product)
         dispatch(addItemToCart(product))
         console.log(localStorage.getItem("token"))
         try {
             let data=await fetch(`http://localhost:8080/cart`,{
                 method:"POST",
                 headers:{Authorization:localStorage.getItem("token"),"Content-Type":"application/json"},
-                body:JSON.stringify(product)
+                body:JSON.stringify(obj)
             })
             let res=await data.json()
             console.log(res)

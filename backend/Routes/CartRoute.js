@@ -23,7 +23,7 @@ CartProductRouter.post("/cart",async(req,res)=>{
     
  } catch (error) {
    
-    res.send({msg:"Something Went Wrong",error})
+    res.send({msg:"Something Went Wrong from backend",error})
  }
    
 

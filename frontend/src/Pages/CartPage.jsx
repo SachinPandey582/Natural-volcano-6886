@@ -9,19 +9,22 @@ import CartProduct from "../components/CartProduct";
 
 // The default icon size is 1em (16px)
 
-
+import { useNavigate } from "react-router-dom";
 
 
 const CartPage = () => {
   const dispatch = useDispatch();
   const { cart } = useSelector((store) => store.cartManager);
-
+  const { isAuth } = useSelector((store) => store.authState);
+const nav=useNavigate()
   let total=0
-  if(cart.length==0){
-    total=0
-  }else{
-    cart.forEach(({price,quantity})=> total=total+price*quantity )
-  }
+  
+  console.log(isAuth)
+    if(cart.length==0){
+      total=0
+    }else{
+      cart.forEach(({price,quantity})=> total=total+price*quantity )
+    }
  
 
   const getData = async () => {
@@ -32,7 +35,7 @@ const CartPage = () => {
 
     console.log(res)
       dispatch(allCartData(res));
-   
+    
   };
 
   React.useEffect(() => {

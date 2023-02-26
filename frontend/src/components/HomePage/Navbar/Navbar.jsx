@@ -187,6 +187,7 @@ const nav=useNavigate()
   };
 
   const handleLogout = () => {
+    nav("/")
     // console.log("aman")
     localStorage.removeItem("userLogin")
     // localStorage.setItem("userLogin",JSON.stringify())
