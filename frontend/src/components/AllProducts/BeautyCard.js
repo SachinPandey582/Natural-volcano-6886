@@ -10,15 +10,17 @@ import {
     Text,
     Button
 } from '@chakra-ui/react'
+import { useNavigate } from 'react-router'
 
-export const ProductCard = ({image,title,price}) => {
+export const ProductCard = ({img,title,price,_id}) => {
     const [cart,setCart]=useState("Add To Cart")
+    const navigate = useNavigate()
   return (
     <div>
-          <Card maxW='sm'>
+          <Card maxW='sm' onClick={()=>navigate(`/product/${_id}`)}>
               <CardBody>
                   <Image
-                      src={image}
+                      src={img}
                       alt={title}
                       h="50%"
                   />

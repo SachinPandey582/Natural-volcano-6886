@@ -229,7 +229,7 @@ const Beauty = () => {
         </div>
         <div className={BPCss.RightContainer}>
           {totalData.map((el) => (
-            <ProductCard image={el.img} title={el.title} price={el.price} />
+            <ProductCard {...el} />
           ))}
         </div>
       </div>
