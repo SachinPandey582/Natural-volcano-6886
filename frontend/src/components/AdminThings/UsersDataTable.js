@@ -3,7 +3,7 @@ import { Table, Thead, Tbody, Tr, Th, Td, Button } from "@chakra-ui/react";
 import axios from "axios";
 import "./UserDataTable.css";
 const getData1=async()=>{
-    let res=await axios.get(`http://localhost:8080/users?role=admin&pass=8765`)
+    let res=await axios.get(`https://cute-tan-magpie-kilt.cyclic.app/users?role=admin&pass=8765`)
     return res
     }
 const TableComponent = ({ data }) => {
