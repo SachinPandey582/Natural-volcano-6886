@@ -587,7 +587,7 @@ const nav=useNavigate()
             />
             <MenuList>
               <MenuItem className="menuIconDesign">Fashion</MenuItem>
-              <MenuItem className="menuIconDesign">
+              <MenuItem onClick={()=>nav("/products")} className="menuIconDesign">
                 Beauty & Personal Care
               </MenuItem>
               <MenuItem className="menuIconDesign">Home Decor</MenuItem>
@@ -962,7 +962,7 @@ const nav=useNavigate()
       <Box className="marronNavbar">
         <Box className="insideMaroonNavbar">
           <Text>Fashion</Text>
-          <Text>Beauty & Personal Care</Text>
+          <Text onClick={()=>nav("/products")}>Beauty & Personal Care</Text>
           <Text>Home Decor</Text>
           <Text>Products Near Me</Text>
         </Box>
