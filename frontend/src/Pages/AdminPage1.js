@@ -18,8 +18,8 @@ const AdminPage1 = () => {
   
 const navigate=useNavigate()
   const getData = async () => {
-    // let res=  await axios.get(`http://localhost:8080/users?role=admin&pass=8765`)
-    let res = await axios.get(`http://localhost:8080/products`);
+    // let res=  await axios.get(`https://cute-tan-magpie-kilt.cyclic.app/users?role=admin&pass=8765`)
+    let res = await axios.get(`https://cute-tan-magpie-kilt.cyclic.app/products`);
     setdata(res.data);
     return res;
   };

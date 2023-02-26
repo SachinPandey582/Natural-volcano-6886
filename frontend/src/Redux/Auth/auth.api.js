@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const getUserData = async (userDataLogin) => {
-  let user = await fetch("http://localhost:8080/user/login", {
+  let user = await fetch("https://cute-tan-magpie-kilt.cyclic.app/user/login", {
     method: "POST",
     headers: {
       "content-type": "Application/json"
@@ -19,7 +19,7 @@ export const getUserData = async (userDataLogin) => {
 export const postUserData = async (userData) => {
   console.log(userData);
 
-  let res = await axios.post("http://localhost:8080/user/signup", userData);
+  let res = await axios.post("https://cute-tan-magpie-kilt.cyclic.app/user/signup", userData);
 
   console.log(res, "new");
 

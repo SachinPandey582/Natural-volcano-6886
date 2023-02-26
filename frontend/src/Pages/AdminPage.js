@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import NumberGraph from "../components/AdminThings/Graph";
 
 const AdminPage = () => {
+  console.log(process.env.REACTAPI)
   const [data, setdata] = useState([]);
   const [data1,setdata1]=useState([])
   const [data2,setdata2]=useState([])
@@ -20,26 +21,26 @@ const AdminPage = () => {
   const navigate = useNavigate();
 
   const getData = async () => {
-    // let res=  await axios.get(`http://localhost:8080/users?role=admin&pass=8765`)
-    let res = await axios.get(`http://localhost:8080/products`);
+    // let res=  await axios.get(`https://cute-tan-magpie-kilt.cyclic.app/users?role=admin&pass=8765`)
+    let res = await axios.get(`https://cute-tan-magpie-kilt.cyclic.app/products`);
     setdata(res.data);
     return res;
   };
 
   const getData1 = async () => {
-    // let res=  await axios.get(`http://localhost:8080/users?role=admin&pass=8765`)
-    let res = await axios.get(`http://localhost:8080/products?category=Home`);
+    // let res=  await axios.get(`https://cute-tan-magpie-kilt.cyclic.app/users?role=admin&pass=8765`)
+    let res = await axios.get(`https://cute-tan-magpie-kilt.cyclic.app/products?category=Home`);
     setdata1(res.data);
     return res;
   };
   const getData2 = async () => {
-    // let res=  await axios.get(`http://localhost:8080/users?role=admin&pass=8765`)
-    let res = await axios.get(`http://localhost:8080/products?category=Beauty`);
+    // let res=  await axios.get(`https://cute-tan-magpie-kilt.cyclic.app/users?role=admin&pass=8765`)
+    let res = await axios.get(`https://cute-tan-magpie-kilt.cyclic.app/products?category=Beauty`);
     setdata2(res.data);
     return res;
   };const getData3 = async () => {
-    // let res=  await axios.get(`http://localhost:8080/users?role=admin&pass=8765`)
-    let res = await axios.get(`http://localhost:8080/products?category=Fashion`);
+    // let res=  await axios.get(`https://cute-tan-magpie-kilt.cyclic.app/users?role=admin&pass=8765`)
+    let res = await axios.get(`https://cute-tan-magpie-kilt.cyclic.app/products?category=Fashion`);
     setdata3(res.data);
     return res;
   };

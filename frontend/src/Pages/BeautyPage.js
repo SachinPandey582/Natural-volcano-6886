@@ -59,50 +59,50 @@ const Beauty = () => {
   };
   const getData = async () => {
     let data = await axios.get(
-      `http://localhost:8080/products?page=${page}&limit=8`
+      `https://cute-tan-magpie-kilt.cyclic.app/products?page=${page}&limit=8`
     );
     setTotalData(data.data);
   };
   const getData1 = async () => {
     let data = await axios.get(
-      `http://localhost:8080/products?category=Beauty&page=${page}&limit=8`
+      `https://cute-tan-magpie-kilt.cyclic.app/products?category=Beauty&page=${page}&limit=8`
     );
     setTotalData(data.data);
   };
   const getData2 = async () => {
     let data = await axios.get(
-      `http://localhost:8080/products?category=Fashion&page=${page}&limit=8`
+      `https://cute-tan-magpie-kilt.cyclic.app/products?category=Fashion&page=${page}&limit=8`
     );
     setTotalData(data.data);
   };
   const getData3 = async () => {
     let data = await axios.get(
-      `http://localhost:8080/products?category=Home&page=${page}&limit=8`
+      `https://cute-tan-magpie-kilt.cyclic.app/products?category=Home&page=${page}&limit=8`
     );
     setTotalData(data.data);
   };
   const getData4 = async (num) => {
     console.log(num);
     let data = await axios.get(
-      `http://localhost:8080/products?category=Fashion&lte=${num}&page=${page}&limit=8`
+      `https://cute-tan-magpie-kilt.cyclic.app/products?category=Fashion&lte=${num}&page=${page}&limit=8`
     );
     setTotalData(data.data);
   };
   const getData5 = async (min, max) => {
     let data = await axios.get(
-      `http://localhost:8080/products?category=Fashion&min=${min}&max=${max}&page=${page}&limit=8`
+      `https://cute-tan-magpie-kilt.cyclic.app/products?category=Fashion&min=${min}&max=${max}&page=${page}&limit=8`
     );
     setTotalData(data.data);
   };
   const getData6 = async (num) => {
     let data = await axios.get(
-      `http://localhost:8080/products?category=Fashion&gte=${num}&page=${page}&limit=8`
+      `https://cute-tan-magpie-kilt.cyclic.app/products?category=Fashion&gte=${num}&page=${page}&limit=8`
     );
     setTotalData(data.data);
   };
   //   between1000and2000;
 
-  //   http://localhost:8080/products?category=Fashion&min=3000&max=4000&page=${page}&limit=8
+  //   https://cute-tan-magpie-kilt.cyclic.app/products?category=Fashion&min=3000&max=4000&page=${page}&limit=8
   console.log(priceFilters);
   console.log(totalData);
   useEffect(() => {

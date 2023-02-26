@@ -88,7 +88,7 @@ quantity:Newquantity,
 
         }
         console.log("this is working the edit ",id)
-        fetch(`http://localhost:8080/products/${id}?role=admin&pass=8765`, { 
+        fetch(`https://cute-tan-magpie-kilt.cyclic.app/products/${id}?role=admin&pass=8765`, { 
         method: "PATCH",
         headers: {
             "Content-Type" : "application/json"
@@ -106,7 +106,7 @@ quantity:Newquantity,
         console.log('this is working the delete',id)
         //i am getting the id can you check there 
         
-        fetch(`http://localhost:8080/products/${id}?role=admin&pass=8765`,{
+        fetch(`https://cute-tan-magpie-kilt.cyclic.app/products/${id}?role=admin&pass=8765`,{
          method:"DELETE"
         }).then(res=>res.json())
         .then(res=>console.log(res))

@@ -16,7 +16,7 @@ const TableComponent = ({ data }) => {
     }
 
 const changeTheUser=async(id,role)=>{
-  let res1=await fetch(`http://localhost:8080/user/update/${id}?role=admin&pass=8765`,{
+  let res1=await fetch(`https://cute-tan-magpie-kilt.cyclic.app/user/update/${id}?role=admin&pass=8765`,{
     method:"PATCH",
     headers:{"content-type":"application/json"},
     body:JSON.stringify({_id:id,role: role==="user" ?"admin":"user" })

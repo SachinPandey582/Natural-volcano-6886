@@ -28,7 +28,7 @@ const nav=useNavigate()
  
 
   const getData = async () => {
-    let data = await fetch(`http://localhost:8080/cart`, {
+    let data = await fetch(`https://cute-tan-magpie-kilt.cyclic.app/cart`, {
       headers: { Authorization: localStorage.getItem("token") },
     });
     let res = await data.json();

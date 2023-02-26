@@ -26,7 +26,7 @@ const ProductForm = () => {
       quantity,
       category,
     };
-    fetch(`http://localhost:8080/products`, {
+    fetch(`https://cute-tan-magpie-kilt.cyclic.app/products`, {
       method: "POST",
       body: JSON.stringify(payload),
       headers: {

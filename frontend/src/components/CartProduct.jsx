@@ -37,7 +37,7 @@ const CartProduct = ({price,title,quantity,_id,img}) => {
 
   console.log(_id)
   dispatch(updateItemFromCart({_id:_id,quantity:quantity+1}))
-  let data=await fetch(`http://localhost:8080/cart/${_id}`,{
+  let data=await fetch(`https://cute-tan-magpie-kilt.cyclic.app/cart/${_id}`,{
     method:"PATCH",
     headers:{Authorization:localStorage.getItem("token"),"Content-Type":"application/json"},
     body:JSON.stringify({_id:_id,quantity:quantity+1})
@@ -49,7 +49,7 @@ const CartProduct = ({price,title,quantity,_id,img}) => {
   const decreaseQuantity=async(_id)=>{
     console.log(_id)
     dispatch(updateItemFromCart({_id:_id,quantity:quantity-1}))
-    let data=await fetch(`http://localhost:8080/cart/${_id}`,{
+    let data=await fetch(`https://cute-tan-magpie-kilt.cyclic.app/cart/${_id}`,{
     method:"PATCH",
     headers:{Authorization:localStorage.getItem("token"),"Content-Type":"application/json"},
     body:JSON.stringify({_id:_id,quantity:quantity-1})
@@ -61,7 +61,7 @@ const CartProduct = ({price,title,quantity,_id,img}) => {
 
     const deleteProduct=async(_id)=>{
       dispatch(deleteItemFromCart(_id))
-      let data=await fetch(`http://localhost:8080/cart/${_id}`,{
+      let data=await fetch(`https://cute-tan-magpie-kilt.cyclic.app/cart/${_id}`,{
         method:"DELETE",
         headers:{Authorization:localStorage.getItem("token")}
       

@@ -15,7 +15,7 @@ const SingleProductPage = () => {
     const getData=async()=>{
     
         try {
-            let data=await fetch(`http://localhost:8080/products/${id}`)
+            let data=await fetch(`https://cute-tan-magpie-kilt.cyclic.app/products/${id}`)
             let res=await data.json()
             setProduct(res[0])
            
@@ -44,7 +44,7 @@ const SingleProductPage = () => {
         dispatch(addItemToCart(product))
         console.log(localStorage.getItem("token"))
         try {
-            let data=await fetch(`http://localhost:8080/cart`,{
+            let data=await fetch(`https://cute-tan-magpie-kilt.cyclic.app/cart`,{
                 method:"POST",
                 headers:{Authorization:localStorage.getItem("token"),"Content-Type":"application/json"},
                 body:JSON.stringify(obj)
