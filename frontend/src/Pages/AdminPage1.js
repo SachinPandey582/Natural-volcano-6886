@@ -6,8 +6,8 @@ import axios from "axios";
 // import ProductAddToCart from '../components/AdminThings/ProductCard'
 import { Button, Center, Grid, Heading, Input, list } from "@chakra-ui/react";
 import AD1css from "./AdminPage.module.css";
-import SignupCard from "../components/AdminThings/AdminForm";
 import { useNavigate } from "react-router-dom";
+import ProductForm from "./AddTheData";
 // import UsersData from '../components/AdminThings/FetchusersCard'
 
 const AdminPage1 = () => {
@@ -86,7 +86,8 @@ const navigate=useNavigate()
           </Center>
           <br/>
          <div style={{margin:'auto',width:"50%"}} >
-         <SignupCard />
+     
+         <ProductForm/>
          </div>
         </div>
       </div>
