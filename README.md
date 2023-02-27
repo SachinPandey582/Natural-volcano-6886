@@ -18,17 +18,17 @@
      <h1>Cart-Page</h1>
     <img src="https://i.postimg.cc/wvjDHS2D/Screenshot-from-2023-02-27-12-24-25.png" alt="">
     <h1>Admin-Page</h1>
-    <img src="https://i.postimg.cc/g0qtYbRC/Screenshot-from-2023-01-30-20-55-01.png" alt="">
-    <h1>Search-Page</h1>
-    <img src="https://i.postimg.cc/9XN8XpRQ/Screenshot-from-2023-01-30-20-56-53.png" alt="">
+    <img src="https://i.postimg.cc/SK6rfnmd/Screenshot-from-2023-02-27-13-04-15.png" alt="">
+    <h1>Admin Products Page</h1>
+    <img src="https://i.postimg.cc/DZ7cj7ZT/Screenshot-from-2023-02-27-13-04-47.png" alt="">
     <h1>Checkout Page</h1>
-    <img src="https://i.postimg.cc/MG8r2pc0/Screenshot-from-2023-01-30-20-54-22.png">
+    <img src="https://i.postimg.cc/5tnFPsJy/Screenshot-from-2023-02-27-12-26-02.png">
     <h1>[Getting Started]</h1>
     <h3>Execution</h3>
     <p>If you want to run our project in your local machine</p>
     <p>Follow the given steps:</p>
     <ul>
-        <li>Clone our respository <a href="https://github.com/HANUMAT-SHARAN/bright-noise-2667">https://github.com/HANUMAT-SHARAN/bright-noise-2667</a></li>
+        <li>Clone our respository <a href="https://github.com/SachinPandey582/Natural-volcano-6886">https://github.com/SachinPandey582/Natural-volcano-6886</a></li>
         <li>Open our code in VS code </li>
  <li>Then do npm install</li>
         <li>Then Initialize the server by writing 'npm run start' on Terminal</li>
@@ -38,7 +38,10 @@
     <ul>
         <li>HTML</li>
         <li>CSS</li>
-        <li>Type Script</li>
+        <li>Java Script</li>
+         <li>Redux</li>
+         <li>Express</li>
+         <li>Mongodb</li>
         <li>Chakra UI </li>
   <li>React.js</li>
   <li>React Routing</li>
