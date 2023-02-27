@@ -43,14 +43,7 @@
   <li>React.js</li>
   <li>React Routing</li>
         <li>node js</li>
-    </ul>
-        <h1>Creators</h1>
-    <ul>
-        <li><a href="https://github.com/HANUMAT-SHARAN">@Hanumat Sharan</a></li>
-   <li><a href="https://github.com/codersudhir">@Sudhir Nandane</a></li>
-   <li><a href="https://github.com/palabhi017">@Abhishek Pal</a></li>
-   <li><a href="https://github.com/sonu25122000">@Sonu Kumar</a></li>
-   <li><a href="https://github.com/raviwed">@illuri raviteja reddy</a></li>
+   
         
         
         
