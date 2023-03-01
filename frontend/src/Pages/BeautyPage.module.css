@@ -12,6 +12,49 @@ grid-template-columns: repeat(3,1fr);
 /* .RightContainer div{
 border: ;
 } */
-.LeftContainer{
+.Container{
     padding-left: 20%;
+}
+
+@media all and (min-width:300px) and (max-width:900px){
+    .RightContainer{
+        display: grid;
+    grid-template-columns: repeat(2,1fr);
+    
+    }
+    .Container{
+        display: none;
+    }
+}
+
+@media all and (min-width:901px) and (max-width:1400px){
+    .RightContainer{
+        display: grid;
+    grid-template-columns: repeat(3,1fr);
+    
+    }
+    
+}
+
+@media all and (min-width:300px) and (max-width:510px){
+    .RightContainer{
+        display: grid;
+    grid-template-columns: repeat(1,1fr);
+    
+    }
+    .Container{
+        display: none;
+    }
+}
+
+
+@media all and (min-width:300px) and (max-width:380px){
+    .RightContainer{
+        display: grid;
+    grid-template-columns: repeat(1,1fr);
+    
+    }
+    .Container{
+        display: none;
+    }
 }

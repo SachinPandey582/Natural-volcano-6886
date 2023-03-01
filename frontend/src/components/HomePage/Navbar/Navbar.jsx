@@ -149,31 +149,7 @@ const Navbar = () => {
     notifyssignup()
   }
   
-  // if(isAuth && isAuthSignup){
-  //   // console.log(authData)
-  //   if (authData.msg == 'User Registered Succesfully') {
-  //     toast({
-  //       description: "user registerd succesfully..😊",
-  //       status: "success",
-  //       isClosable: true,
-  //       variant: "top-accent",
-  //       duration: 5000,
-  //       position: "top",
-  //     });
-  //     // setClick((prev)=>!prev)
-  //   }
-  //   else {
-  //     toast({
-  //       description: "user already registered, please login..!",
-  //       status: "error",
-  //       isClosable: true,
-  //       variant: "top-accent",
-  //       duration: 5000,
-  //       position: "top",
-  //     });
-  //     // setClick((prev)=>!prev)
-  //   }
-  // }
+ 
 
 const nav=useNavigate()
 
@@ -186,29 +162,6 @@ const nav=useNavigate()
     
   }
 
-  // if(isAuth && isAuthLogin){
-  //   if ( authData.msg === "Account Not Exist") {
-  //     toast({
-  //       description: "Entered data is not correct, Please check once again..!",
-  //       status: "warning",
-  //       isClosable: true,
-  //       variant: "top-accent",
-  //       duration: 5000,
-  //       position: "top",
-  //     })
-  //   }
-  //   else {
-  //     toast({
-  //       description: `Namastey 🙏${authData.name} `,
-  //       status: "success",
-  //       variant: "subtle",
-  //       isClosable: true,
-  //       duration: 5000,
-  //       position: "top",
-  //     })
-  
-  //   }
-  // }
 
 
 
@@ -221,13 +174,13 @@ const nav=useNavigate()
 
   const handleLogout = () => {
     nav("/")
-    // console.log("aman")
+   
     localStorage.removeItem("userLogin")
-    // localStorage.setItem("userLogin",JSON.stringify())
+ 
     localStorage.removeItem("registeredData")
 
     localStorage.removeItem("token")
-    // localStorage.setItem("registeredData",JSON.stringify())
+    
     dispatchData(userLogout())
     notifylogout()
   }
@@ -261,7 +214,7 @@ const getTheSearchItem=async(value)=>{
     }
   }, [dispatchData]);
 
-  console.log("hii mana")
+  // console.log("hii mana")
   console.log(authData)
 
   return (
@@ -277,13 +230,13 @@ const getTheSearchItem=async(value)=>{
             <input
 onChange={(e)=>getTheSearchItem(e.target.value)}
 type="text"
-              placeholder={`Search here for products in ${location.city}`}
+              placeholder={`Search here for products near by..`}
             />
           </Box>
         </Box>
 
         <Box className="location">
-          <MdLocationOn /> &nbsp;{location.state}
+          <MdLocationOn /> &nbsp; India
         </Box>
 
         <Box className="authUser">
@@ -650,7 +603,7 @@ type="text"
               <ModalCloseButton />
               <ModalBody p={6}>
                 <Input
-                  placeholder={`You are searching for ${location.city}`}
+                  placeholder={`You are searching for near by..`}
                   marginTop="4"
                 // onChange={(e) => handleQuerry(e.target.value)}
                 />
