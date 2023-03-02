@@ -11,6 +11,7 @@ import CartProduct from "../components/CartProduct";
 
 import { useNavigate } from "react-router-dom";
 import Loader from "../components/Loader";
+import CartEmptyBanner from "../components/CartEmptyBanner";
 
 const CartPage = () => {
   const dispatch = useDispatch();
@@ -44,6 +45,11 @@ const CartPage = () => {
       setLoad(false);
     }, 1000);
   }, []);
+
+
+  if(cart.length===0){
+    return <CartEmptyBanner/>
+  }
   return (
     <>
       <Heading
@@ -56,7 +62,7 @@ const CartPage = () => {
         boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px;"}
         backgroundColor="#902935"
         color="white"
-        style={{ fontSize: 20 }}
+        style={{ fontSize: 19 }}
       >
         Total Items {cart.length || 0}
       </Heading>
@@ -65,33 +71,33 @@ const CartPage = () => {
         style={{
           justifyContent: "space-around",
           width: "90%",
-          margin: "auto",
+          fontFamily:"Poppins", margin: "auto",
           alignItems: "center",
-          marginTop: 30,
+          fontFamily:"Poppins", marginTop: 30,
           fontWeight: "bold",
-          fontSize: 18,
+          fontSize: 17,
           boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
           padding: 20,
           borderRadius: 20,
         }}
       >
-        <Text>Item Details</Text>
-        <Text marginLeft={"20%"}>Quantity </Text>
+        <Text fontFamily="Poppins">Item Details</Text>
+        <Text fontFamily="Poppins" marginLeft={"20%"}>Quantity </Text>
         <Text>₹ Price </Text>
       </Flex>
 
-      <SimpleGrid
+     {cart.length>0? <SimpleGrid
         columns={[1, 2]}
         gap={5}
         padding={5}
         borderRadius={20}
-        margin={"auto"}
+        fontFamily="Poppins" margin={"auto"}
         style={{
           justifyContent: "space-between",
           width: "90%",
-          margin: "auto",
+          fontFamily:"Poppins" ,margin: "auto",
           alignItems: "center",
-          marginTop: 10,
+          fontFamily:"Poppins" ,marginTop: 10,
           fontWeight: "bold",
           fontSize: 18,
         }}
@@ -100,7 +106,7 @@ const CartPage = () => {
          display={["none","grid"]}
           borderRadius={20}
           boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px;"}
-          margin={"auto"}
+          fontFamily="Poppins" margin={"auto"}
           p={5}
           columns={[1, 1, 2, 2, 2]}
           style={{ width: "80%" }}
@@ -110,7 +116,7 @@ const CartPage = () => {
             style={{
               justifyContent: "space-around",
               width: "100%",
-              margin: "auto",
+              fontFamily:"Poppins" ,margin: "auto",
               alignItems: "center",
               backgroundColor: "#902935",
               color: "white",
@@ -118,7 +124,7 @@ const CartPage = () => {
           >
             Home
           </Button>
-          <Text margin={"auto"} mt={[5, 2]} color="red">
+          <Text fontFamily="Poppins" margin={"auto"} mt={[5, 2]} color="red">
             My Cart
           </Text>
         </SimpleGrid>
@@ -128,11 +134,11 @@ const CartPage = () => {
           borderRadius={20}
           boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px;"}
           m={5}
-          margin={"auto"}
+          fontFamily="Poppins" margin={"auto"}
           columns={[1, 1, 1, 2, 2]}
           style={{ width: "80%" }}
         >
-          <Text margin={"auto"} mb={[5, 2]}>
+          <Text fontSize={18} fontFamily="Poppins" margin={"auto"} mb={[5, 2]}>
             Subtotal ₹ {total}{" "}
           </Text>
           <Button
@@ -140,7 +146,7 @@ const CartPage = () => {
             style={{
               justifyContent: "space-around",
               width: "100%",
-              margin: "auto",
+              fontFamily:"Poppins", margin: "auto",
               alignItems: "center",
               backgroundColor: "#902935",
               color: "white",
@@ -149,8 +155,8 @@ const CartPage = () => {
             Place Order
           </Button>
         </SimpleGrid>
-      </SimpleGrid>
-      <SimpleGrid gap={5} width={"90%"} margin="auto">
+      </SimpleGrid>:null}
+      <SimpleGrid gap={5} width={"90%"} fontFamily="Poppins" margin="auto">
         {load ? <Loader /> : null}
         {load ? (
           <Loader />
@@ -160,27 +166,27 @@ const CartPage = () => {
           cart.map((el) => <CartProduct key={el._id} {...el} />)
         )}
       </SimpleGrid>
-      <SimpleGrid
+      {cart.length>0? <SimpleGrid
         columns={[1, 2]}
         gap={5}
         padding={5}
         borderRadius={20}
-        margin={"auto"}
+        fontFamily="Poppins" margin={"auto"}
         style={{
           justifyContent: "space-between",
           width: "90%",
-          margin: "auto",
+          fontFamily:"Poppins" ,margin: "auto",
           alignItems: "center",
-          marginTop: 10,
+          fontFamily:"Poppins" ,marginTop: 10,
           fontWeight: "bold",
           fontSize: 18,
         }}
       >
         <SimpleGrid
-       
+         display={["none","grid"]}
           borderRadius={20}
           boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px;"}
-          margin={"auto"}
+          fontFamily="Poppins" margin={"auto"}
           p={5}
           columns={[1, 1, 2, 2, 2]}
           style={{ width: "80%" }}
@@ -190,7 +196,7 @@ const CartPage = () => {
             style={{
               justifyContent: "space-around",
               width: "100%",
-              margin: "auto",
+              fontFamily:"Poppins" ,margin: "auto",
               alignItems: "center",
               backgroundColor: "#902935",
               color: "white",
@@ -198,7 +204,7 @@ const CartPage = () => {
           >
             Home
           </Button>
-          <Text margin={"auto"} mt={[5, 2]} color="red">
+          <Text fontFamily="Poppins" margin={"auto"} mt={[5, 2]} color="red">
             My Cart
           </Text>
         </SimpleGrid>
@@ -208,11 +214,11 @@ const CartPage = () => {
           borderRadius={20}
           boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px;"}
           m={5}
-          margin={"auto"}
+          fontFamily="Poppins" margin={"auto"}
           columns={[1, 1, 1, 2, 2]}
           style={{ width: "80%" }}
         >
-          <Text margin={"auto"} mb={[5, 2]}>
+          <Text fontSize={18} fontFamily="Poppins" margin={"auto"} mb={[5, 2]}>
             Subtotal ₹ {total}{" "}
           </Text>
           <Button
@@ -220,7 +226,7 @@ const CartPage = () => {
             style={{
               justifyContent: "space-around",
               width: "100%",
-              margin: "auto",
+              fontFamily:"Poppins", margin: "auto",
               alignItems: "center",
               backgroundColor: "#902935",
               color: "white",
@@ -229,7 +235,7 @@ const CartPage = () => {
             Place Order
           </Button>
         </SimpleGrid>
-      </SimpleGrid>
+      </SimpleGrid>:null}
     </>
   );
 };

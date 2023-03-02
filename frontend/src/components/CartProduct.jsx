@@ -102,10 +102,11 @@ const CartProduct = ({ price, title, quantity, _id, img }) => {
           alignItems: "center",
           marginTop: 30,
           fontWeight: "bold",
-          fontSize: 18,
+          fontSize: 16,
           padding: 20,
           boxShadow:
-            "rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px",
+
+            "rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px",fontFamily:"Poppins",
           borderTopRightRadius: 50,
           borderBottomRightRadius: 10,
           borderTopLeftRadius: 50,
@@ -197,7 +198,7 @@ const CartProduct = ({ price, title, quantity, _id, img }) => {
             justifyContent={"space-around"}
             textAlign={"center"}
             margin="auto"
-            fontSize="20px"
+            fontSize="18px"
           >
             Price : ₹ {quantity * price}
           </Text>

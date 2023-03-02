@@ -7,6 +7,7 @@ import AdminPage3 from "../Pages/AdminPage3";
 import Beauty from "../Pages/BeautyPage";
 import CartPage from "../Pages/CartPage";
 import HomePage from "../Pages/HomePage";
+import NotFound from "../Pages/NotFound";
 import PaymentPage from "../Pages/PaymentPage";
 import SingleProductPage from "../Pages/SingleProductPage";
 import PrivateRoute from "./PrivateRoute";
@@ -28,6 +29,7 @@ const AllRoutes = () => {
         <Route path="/cart" element={<CartPage />}></Route>
         <Route path="/product/:id" element={<SingleProductPage/>} />
         <Route path="/payment" element={<PaymentPage/>} />
+        <Route path="*" element={<NotFound/>} />
       </Routes>
     </div>
   );
