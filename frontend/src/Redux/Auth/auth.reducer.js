@@ -14,7 +14,8 @@ const intialState = {
   error: false,
   loading: false,
   isAuthLogin: false,
-  isAuthSignup: false
+  isAuthSignup: false,
+  isExist:false
 };
 
 export const authReducer = (state = intialState, { type, payload }) => {
@@ -48,7 +49,8 @@ export const authReducer = (state = intialState, { type, payload }) => {
         isAuth: true,
         authData: payload,
         isAuthSignup: true,
-        isAuthLogin:false
+        isAuthLogin:false,
+        isExist:true
       };
     }
     case POST_USERDATA_LOADING: {

@@ -11,6 +11,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.3.0",
     "@fortawesome/free-solid-svg-icons": "^6.3.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@sweetalert2/themes": "^5.0.15",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -31,6 +32,8 @@
     "react-toastify": "^9.1.1",
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
+    "sweetalert2": "^11.7.3",
+    "swiper": "^9.1.0",
     "vercel": "^28.16.7",
     "web-vitals": "^2.1.4"
   },

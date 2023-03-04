@@ -4,19 +4,20 @@ import React, { useEffect, useState } from "react";
 import { ProductCard } from "../components/AllProducts/BeautyCard";
 import FilterSidebar from "../components/AllProducts/FilterProducts";
 import BPCss from "./BeautyPage.module.css";
-import { ToastContainer, toast } from 'react-toastify';
-  import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Beauty = () => {
   const [totalData, setTotalData] = useState([]);
-  const notify=()=>toast.success('you have successfully filterd', {
-    position: "top-right",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "colored",
+  const notify = () =>
+    toast.success("you have successfully filterd", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
     });
   const [priceFilters, setPriceFilters] = useState({
     under500: false,
@@ -109,30 +110,29 @@ const Beauty = () => {
     console.log(categoryFilters);
     if (categoryFilters.Beauty) {
       getData1();
-      notify()
+      notify();
     } else if (categoryFilters.Fashion) {
       getData2();
-      notify()
+      notify();
     } else if (categoryFilters.Home) {
       getData3();
-      notify()
+      notify();
     } else if (priceFilters.under500) {
       getData4(3000);
-      notify()
+      notify();
     } else if (priceFilters.between500and1000) {
       getData5(3000, 5000);
-      notify()
+      notify();
     } else if (priceFilters.between1000and2000) {
       getData6(5000);
-      notify()
+      notify();
     } else {
       getData();
     }
-  
   }, [categoryFilters, priceFilters, page]);
   return (
     <>
-      <div className={BPCss.mainContainer}>
+      <div className={BPCss.mainContainer} >
         <div className={BPCss.Container}>
           <br />
 
@@ -244,29 +244,54 @@ const Beauty = () => {
             <br />
           </div>
         </div>
-        <div className={BPCss.RightContainer}>
+        <div className={BPCss.RightContainer} >
           {totalData.map((el) => (
             <ProductCard {...el} />
           ))}
         </div>
       </div>
-      <Box textAlign="center" >
+      <Box textAlign="center">
         <button
-        style={{backgroundColor:`#902935`,padding:13,borderRadius:10,color:"white",fontSize:20,margin:5}}
-          disabled={page===5}
+          style={{
+            backgroundColor: `#902935`,
+            padding: 13,
+            borderRadius: 10,
+            color: "white",
+            fontSize: 20,
+            margin: 5,
+          }}
+          disabled={page === 5}
           onClick={() => setPage(page + 1)}
           color="white"
           backgroundColor={"#902935"}
         >
           +
         </button>
-        <button   style={{backgroundColor:`#902935`,padding:13,borderRadius:10,color:"white",fontSize:20,marginLeft:5}} color="white" backgroundColor={"#902935"}>
+        <button
+          style={{
+            backgroundColor: `#902935`,
+            padding: 13,
+            borderRadius: 10,
+            color: "white",
+            fontSize: 20,
+            marginLeft: 5,
+          }}
+          color="white"
+          backgroundColor={"#902935"}
+        >
           {page}
         </button>
         <button
-          disabled={page === 1?true:false}
+          disabled={page === 1 ? true : false}
           onClick={() => setPage(page - 1)}
-          style={{backgroundColor:`#902935`,padding:13,borderRadius:10,color:"white",fontSize:20,margin:5}}
+          style={{
+            backgroundColor: `#902935`,
+            padding: 13,
+            borderRadius: 10,
+            color: "white",
+            fontSize: 20,
+            margin: 5,
+          }}
         >
           -
         </button>

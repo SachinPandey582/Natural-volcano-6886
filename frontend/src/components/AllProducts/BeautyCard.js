@@ -17,12 +17,13 @@ export const ProductCard = ({img,title,price,_id}) => {
     const navigate = useNavigate()
   return (
     <div>
-          <Card maxW='sm' onClick={()=>navigate(`/product/${_id}`)}>
-              <CardBody>
+          <Card maxW='sm' onClick={()=>navigate(`/product/${_id}`)} >
+              <CardBody >
                   <Image
                       src={img}
                       alt={title}
                       h="50%"
+                      style={{zIndex:"-1"}}
                   />
                   <Stack mt='6'>
                       <Heading size='7' fontWeight="400" display="inline-block" overflow="hidden" whiteSpace="nowrap" textOverflow="ellipsis">{title}</Heading>

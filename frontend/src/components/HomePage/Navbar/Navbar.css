@@ -194,9 +194,9 @@
 }
 
 
-@media all and (min-width:300px) and (max-width:380px){
+@media all and (min-width:300px) and (max-width:400px){
     .mainLogo{
-        width: 100px;
+        width: 80px;
         margin-top: 8px;
     }
 }
