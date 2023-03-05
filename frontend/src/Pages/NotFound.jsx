@@ -17,7 +17,7 @@ export default function NotFound() {
         {" "}
         <Button
         mt={5}
-         width={"20%"}
+       
           bgGradient="linear(to-r, #902935, #902935, #902935)"
           color="white"
           variant="solid"

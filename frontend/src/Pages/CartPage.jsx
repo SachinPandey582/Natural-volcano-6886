@@ -12,6 +12,7 @@ import CartProduct from "../components/CartProduct";
 import { useNavigate } from "react-router-dom";
 import Loader from "../components/Loader";
 import CartEmptyBanner from "../components/CartEmptyBanner";
+import { getCartData } from "../Api";
 
 const CartPage = () => {
   const dispatch = useDispatch();
@@ -25,10 +26,7 @@ const CartPage = () => {
     cart.length > 0 &&
     cart.forEach(({ price, quantity }) => (total = total + price * quantity));
   const getData = async () => {
-    let data = await fetch(`https://cute-tan-magpie-kilt.cyclic.app/cart`, {
-      headers: { Authorization: localStorage.getItem("token") },
-    });
-    let res = await data.json();
+   let res=await getCartData()
 
     dispatch(allCartData(res));
   };
@@ -73,7 +71,7 @@ const CartPage = () => {
           width: "90%",
           fontFamily:"Poppins", margin: "auto",
           alignItems: "center",
-          fontFamily:"Poppins", marginTop: 30,
+           marginTop: 30,
           fontWeight: "bold",
           fontSize: 17,
           boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",

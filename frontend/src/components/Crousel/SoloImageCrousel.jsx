@@ -6,7 +6,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
 import "swiper/css/scrollbar";
-import { Navigate } from 'react-router-dom';
+import { Navigate } from "react-router-dom";
 const SoloImageCrousel = ({ arr }) => {
   return (
     <div className="App">
@@ -19,7 +19,7 @@ const SoloImageCrousel = ({ arr }) => {
           220: {
             slidesPerView: 1,
             spaceBetween: 25,
-          }
+          },
         }}
       >
         {/* https://images.unsplash.com/photo-1549989476-69a92fa57c36?ixlib=rb-1.2.1&ixi60d=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60 */}
@@ -27,7 +27,12 @@ const SoloImageCrousel = ({ arr }) => {
           arr?.map((item, index) => {
             return (
               <SwiperSlide key={index}>
-                <img style={{cursor:'pointer'}} src={item} alt={index}  onClick={()=> Navigate('/products')}  />
+                <img
+                  style={{ cursor: "pointer" }}
+                  src={item}
+                  alt={index}
+                  onClick={() => Navigate("/products")}
+                />
               </SwiperSlide>
             );
           })}

@@ -19,10 +19,10 @@ import React, { useEffect, useReducer, useState } from "react";
 import Logo from "../../../assets/SpritsVilla.png";
 
 import { MdLocationOn } from "react-icons/md";
-import { useDispatch} from "react-redux"
+import { useDispatch, useSelector } from "react-redux";
 import { FaUser } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
-import { BsSuitHeartFill} from "react-icons/bs";
+import { BsSuitHeartFill } from "react-icons/bs";
 
 import { SlSocialDropbox } from "react-icons/sl";
 import { BsCartCheckFill } from "react-icons/bs";
@@ -32,13 +32,17 @@ import { AiFillEyeInvisible } from "react-icons/ai";
 
 import "./Navbar.css";
 
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
-
-import { handleUserLogin, handleUserPost, userLogout } from "../../../Redux/Auth/auth.action";
-import { useNavigate } from "react-router-dom"
+import {
+  handleUserLogin,
+  handleUserPost,
+  userLogout,
+} from "../../../Redux/Auth/auth.action";
+import { useNavigate } from "react-router-dom";
 import SmallScreen from "./SmallScreen";
-
+import { getCartData } from "../../../Api";
+import { allCartData } from "../../../Redux/Cart/CartAction";
 
 const initialUserData = {
   name: "",
@@ -67,7 +71,6 @@ const reducer = (state, action) => {
   }
 };
 
-
 const reducerLogin = (statex, actionx) => {
   switch (actionx.type) {
     case "EMAILX":
@@ -81,21 +84,18 @@ const reducerLogin = (statex, actionx) => {
   }
 };
 
-const Navbar = (zIndex=800) => {
-
- 
+const Navbar = (zIndex = 800) => {
   const [register, setRegister] = useState(true);
- 
-  const [SearchedData, setSearchedData] = useState("")
+
+  const [SearchedData, setSearchedData] = useState("");
   const [typePass, setTypePass] = useState(true);
   const [eyeIcon, setEyeIcon] = useState(true);
   const [userData, dispatch] = useReducer(reducer, initialUserData);
   const [userDataLogin, dispatchx] = useReducer(reducerLogin, initialLoginUser);
+  const { cart } = useSelector((store) => store.cartManager);
 
-
-
-  const nav = useNavigate()
-  const dispatchData = useDispatch()
+  const nav = useNavigate();
+  const dispatchData = useDispatch();
   // const isAuth = useSelector((store) => store.authState.isAuth)
   // const isAuthx = useSelector((store) => store.authState)
   // console.log('isAuthx: ', isAuthx);
@@ -107,26 +107,21 @@ const Navbar = (zIndex=800) => {
 
   const modal1 = useDisclosure();
 
-
   const handleLoginSignin = () => {
     setRegister((prev) => !prev);
   };
 
-
-
   const handleRegister = (e) => {
-    e.preventDefault()
-    dispatchData(handleUserPost(userData))
-    dispatch({ type: "RESET" })
-  }
-
-
+    e.preventDefault();
+    dispatchData(handleUserPost(userData));
+    dispatch({ type: "RESET" });
+  };
 
   const handleLogin = (e) => {
-    e.preventDefault()
-    dispatchData(handleUserLogin(userDataLogin))
-    dispatch({ type: "RESETX" })
-  }
+    e.preventDefault();
+    dispatchData(handleUserLogin(userDataLogin));
+    dispatch({ type: "RESETX" });
+  };
 
   const togglePassword = () => {
     setTypePass((prev) => !prev);
@@ -134,39 +129,40 @@ const Navbar = (zIndex=800) => {
   };
 
   const handleLogout = () => {
-    nav("/")
-    localStorage.removeItem("responseData")
-    localStorage.removeItem("token")
-    dispatchData(userLogout())
-  }
-
-  
+    nav("/");
+    localStorage.removeItem("responseData");
+    localStorage.removeItem("token");
+    dispatchData(userLogout());
+  };
 
   const getTheSearchItem = async (value) => {
-    setSearchedData(value)
-    let data = await fetch(`http://localhost:8080/products?search=${SearchedData}`)
-    let res = await data.json()
-  }
+    setSearchedData(value);
+    let data = await fetch(
+      `http://localhost:8080/products?search=${SearchedData}`
+    );
+    let res = await data.json();
+  };
 
+ 
 
-  useEffect(() => {
-   
-  }, []);
-
-
-  let responseData = JSON.parse(localStorage.getItem("responseData")) 
+  let responseData = JSON.parse(localStorage.getItem("responseData"));
 
   return (
     <>
       <Box className="navbarContainer" zIndex={zIndex}>
-        <Box className="logo" onClick={()=>{nav("/")}}>
+        <Box
+          className="logo"
+          onClick={() => {
+            nav("/");
+          }}
+        >
           <Image className="mainLogo" src={Logo} alt="mainLogo" />
         </Box>
 
         <Box className="searchContainer">
           <Box className="searchBox">
             SEARCH &nbsp; |
-            <input
+            <input disabled
               onChange={(e) => getTheSearchItem(e.target.value)}
               type="text"
               placeholder={`Search here for products near by you..`}
@@ -480,37 +476,69 @@ const Navbar = (zIndex=800) => {
             </>
           )}
 
-          {responseData &&
+          {responseData && (
             <>
               <Menu>
-
-
                 <MenuButton>
-                   <span style={{color:"#0fa14c", fontFamily:"Poppins", fontWeight:"bold"}}>{responseData.name}</span>
+                  <span
+                  
+                    style={{
+                      color: "white",
+                      fontFamily: "Poppins",
+                      fontWeight: "bold",
+                      backgroundColor:"#902735",borderRadius:10,padding:`5px 15px 5px 15px`
+                    }}
+                  >
+                    {responseData.name}
+                  </span>
                 </MenuButton>
-                <MenuList style={{zIndex:"10"}}>
-                  <MenuItem style={{ color: "#902735", fontFamily: "Poppins", textDecorationLine: "underline", textUnderlineOffset: "2px" }} onClick={() => nav("/admin")}> Admin</MenuItem>
-                  <MenuItem onClick={handleLogout} style={{ color: "#902735", fontFamily: "Poppins", textDecorationLine: "underline", textUnderlineOffset: "2px" }}> Logout</MenuItem>
+                <MenuList style={{ zIndex: "10" }}>
+                  <MenuItem
+                    style={{
+                      color: "#902735",
+                      fontFamily: "Poppins",
+                      textDecorationLine: "underline",
+                      textUnderlineOffset: "2px",
+                    }}
+                    onClick={() => nav("/admin")}
+                  >
+                    {" "}
+                    Admin
+                  </MenuItem>
+                  <MenuItem
+                    onClick={handleLogout}
+                    style={{
+                      color: "#902735",
+                      fontFamily: "Poppins",
+                      textDecorationLine: "underline",
+                      textUnderlineOffset: "2px",
+                    }}
+                  >
+                    {" "}
+                    Logout
+                  </MenuItem>
                 </MenuList>
               </Menu>
-
             </>
-          }
+          )}
         </Box>
 
         <Box className="wishList">
           <BsSuitHeartFill /> &nbsp; Wishlist
         </Box>
 
-        {responseData ? <Box onClick={() => nav("/cart")} className="cart">
-          <FaShoppingCart /> &nbsp; Cart
-        </Box> : null}
+        {responseData ? (
+          <Box  onClick={() => nav("/cart")} className="cart">
+            <FaShoppingCart /> &nbsp;
+            Cart 
+            <Text color="#902735" fontWeight={"bold"} ml={1}> {cart.length||0}</Text>
+          </Box>
+        ) : null}
       </Box>
 
-      <SmallScreen/>    
+      <SmallScreen />
 
-
-      <Box className="marronNavbar" style={{zIndex:"91"}}>
+      <Box className="marronNavbar" style={{ zIndex: "91" }}>
         <Box className="insideMaroonNavbar">
           <Text>Fashion</Text>
           <Text onClick={() => nav("/products")}>Beauty & Personal Care</Text>

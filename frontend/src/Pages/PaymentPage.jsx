@@ -9,37 +9,46 @@ import {
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { ToastContainer, toast } from 'react-toastify';
-  import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const PaymentPage = () => {
   const dispatch = useDispatch();
   const { totalPrice } = useSelector((store) => store.cartManager);
   const [cardNumber, setCardNumber] = useState("");
   const [expirationDate, setExpirationDate] = useState("");
   const [cvv, setCvv] = useState("");
-  const notify=()=>toast.success('you have successfully purchased an item', {
-    position: "top-right",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "colored",
+  const notify = () =>
+    toast.success("you have successfully purchased an item", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
     });
-const navigate=useNavigate()
-  const handleSubmit = (event) => {
+  const navigate = useNavigate();
+  const handleSubmit = async(event) => {
     event.preventDefault();
     // Here you can handle the payment submission logic
+
     
-navigate("/")
-    console.log("Submitting payment:", { cardNumber, expirationDate, cvv });
-notify()
+    console.log("deletet")
+    let data = await fetch(`https://cute-tan-magpie-kilt.cyclic.app/cart/alldelete`, {
+      headers: { Authorization: localStorage.getItem("token") },
+    });
+    
+    
+    notify();
+    navigate("/");
   };
 
   return (
     <Stack spacing="6" maxW="xl" mx="auto">
-      <Heading as={"xl"} textAlign="center">Payment Details</Heading>
+      <Heading as={"xl"} textAlign="center">
+        Payment Details
+      </Heading>
       <Heading textAlign="center">TotalPrice={totalPrice}</Heading>
 
       <FormControl id="card-number" isRequired>
@@ -71,12 +80,7 @@ notify()
           />
         </FormControl>
       </Stack>
-      <Button
-        colorScheme="teal"
-        size="lg"
-        type="submit"
-        onClick={handleSubmit}
-      >
+      <Button colorScheme="teal" size="lg" type="submit" onClick={handleSubmit}>
         Submit Payment
       </Button>
     </Stack>

@@ -10,15 +10,17 @@ import {
 } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import ProductDescription from "../components/ProductDescription";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { addItemToCart } from "../Redux/Cart/CartAction";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CartItems from "../components/CartItems";
+
 const SingleProductPage = () => {
   const [product, setProduct] = React.useState({});
   const { id } = useParams();
   const dispatch = useDispatch();
-  // // http://localhost:3000/product/63f8ab5ec5a8f7ce168d493a
+  const isAuth = useSelector((store) => store.authState.isAuth)
 
   const getData = async () => {
     try {
@@ -32,19 +34,25 @@ const SingleProductPage = () => {
     }
   };
   const notify = () =>
-    toast.success("🦄 The Product Added Successfully", {
+    toast.success("Product Added Successfully in Cart ", {
       position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
+     
+      theme: "colored",
+    });
+    const notifyerror = () =>
+    toast.error("Please Login To add Product in Cart", {
+      
+     
       theme: "colored",
     });
 
   const addToCart = async () => {
+    if(!isAuth){
+      notifyerror()
+      return
+    }
     notify();
+
     product.des = Math.random() * 342434892398342;
     const { title, category, img, price, quantity } = product;
     let obj = { title, category, img, price, quantity };
@@ -72,6 +80,7 @@ const SingleProductPage = () => {
   }, [id]);
   return (
     <>
+     <CartItems/>
       <SimpleGrid
         borderRadius={18}
         columns={[1, 1, 1, 2]}

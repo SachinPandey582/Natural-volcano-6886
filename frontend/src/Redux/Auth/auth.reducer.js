@@ -9,7 +9,7 @@ import {
 } from "./auth.actionTypes";
 
 const intialState = {
-  isAuth: false,
+  isAuth: localStorage.getItem("token")?true:false,
   authData: {},
   error: false,
   loading: false,

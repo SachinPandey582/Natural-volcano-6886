@@ -1,5 +1,6 @@
 import { Heading } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
+import CartItems from '../CartItems';
 
 const FilterSidebar = () => {
   const [priceFilters, setPriceFilters] = useState({
@@ -47,6 +48,7 @@ const FilterSidebar = () => {
   },[categoryFilters])
   return (
     <div>
+       
         <br/>
       <Heading size={"2xl"}>Filter by:</Heading>
       <br/>
@@ -85,6 +87,7 @@ const FilterSidebar = () => {
       </label>
       <br/>
       <br />
+    
       <Heading as={"h3"}>Discount:</Heading>
       <br />
       <label>
