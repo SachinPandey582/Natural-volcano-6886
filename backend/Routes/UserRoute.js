@@ -38,13 +38,16 @@ UserRouter.post("/user/signup", async (req, res) => {
         if (error) res.send({ msg: "Something Went Wrong" });
         let newUser = new UserModel({ name, email, password: hash, role });
         await newUser.save();
-        setTimeout(async()=>{
-          const user =await UserModel.find({ email });
-       
-        
+
+        const user = await UserModel.find({ email });
+
         const token = jswt.sign({ user: user[0] }, "hanumat");
-        res.send({ msg: "User Registered Succesfully", token: token,name,email });
-        },1000)
+        res.send({
+          msg: "User Registered Succesfully",
+          token: token,
+          name,
+          email,
+        });
       });
     }
   } catch (error) {
@@ -61,7 +64,12 @@ UserRouter.post("/user/login", async (req, res) => {
         if (error) res.send({ msg: "Password Is Not Correct" });
         if (result == true) {
           const token = jswt.sign({ user: user[0] }, "hanumat");
-          res.send({ msg: `Welcome Back ${user[0].name}`, token: token,name:user[0].name,email:user[0].email });
+          res.send({
+            msg: `Welcome Back ${user[0].name}`,
+            token: token,
+            name: user[0].name,
+            email: user[0].email,
+          });
         }
       });
     } else {
@@ -86,7 +94,7 @@ UserRouter.patch("/user/update/:id", adminAuthenticate, async (req, res) => {
   const userId = req.params.id;
   console.log(req.body, userId);
   try {
-    await UserModel.findByIdAndUpdate(userId , req.body);
+    await UserModel.findByIdAndUpdate(userId, req.body);
     res.send({ msg: "User Updated Succesfully" });
   } catch (error) {
     res.send({ msg: "Something Went Wrong", error: error });
