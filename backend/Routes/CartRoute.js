@@ -61,7 +61,19 @@ CartProductRouter.patch("/cart/:id",async(req,res)=>{
          res.send({msg:"Something Went Wrong",error})
      }
  })
- 
+ CartProductRouter.get("/cart/alldelete",async(req,res)=>{
+    const {userId}=req.body
+    console.log(userId)
+    
+    try {
+       await CartProductModel.deleteMany({userId:userId})
+       
+       res.send("Cart Is Empty Now")
+    } catch (error) {
+        
+        res.send({msg:"Something Went Wrong",error})
+    }
+})
 
 
 
