@@ -52,8 +52,7 @@
         <li><a href="https://github.com/HANUMAT-SHARAN">@Hanumat Sharan</a></li>
    <li><a href="https://github.com/SachinPandey582">@Sachin Pandey</a></li>
    <li><a href="https://github.com/amansingh456">@Aman Singh Rajawat</a></li>
-   <li><a href="https://github.com/rohit1620">@Rohit Kumar Malav</a></li>
- <li><a href="https://github.com/dikshantnagpal">@Dikshant Nagpal</a></li>
+ 
    
         
         
