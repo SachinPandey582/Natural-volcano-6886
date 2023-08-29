@@ -9,7 +9,7 @@ const Footer = () => {
         <Box className="footerBox">
             <Box className="oneF">
                 <h1>About Us</h1>
-                <p style={{paddingRight:"10px", color:"#ffffff", textJustify:"auto", marginBottom:"30px"}}>India's most convenient online grocery channel Buyerapp Fresh and Smart makes your grocery shopping even simpler. No more hassles of sweating it out in crowded markets, grocery shops & supermarkets - now shop from the comfort of your home; office, or on the move. We offer you the convenience of shopping for everything that you need for your home - be it fresh fruits & vegetables, rice, dals, oil, packaged food, dairy item, frozen, pet food, household cleaning items & personal care products from a single virtual store.</p>
+                <p style={{paddingRight:"10px", color:"#ffffff", textJustify:"auto", marginBottom:"30px"}}>India's most convenient online grocery channel Buyerapp Fresh and Smart makes your grocery shopping even simpler. No more hassles of sweating it out in crowded markets, grocery shops & supermarkets - now shop from the comfort of your home; office, or on the move.</p>
                 <h1>Payment Options</h1>
                 <img src={cardImg} alt=""  style={{width:"70%",marginBottom: "20px"}}/>
             </Box>

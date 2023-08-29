@@ -10,7 +10,7 @@ import { useNavigate } from "react-router";
 const Crousel = ({ arr }) => {
   const navigate= useNavigate()
   return (
-    <div className="App">
+    <div className="App" style={{zIndex:"-10"}}>
       <Swiper
         modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
         navigation
